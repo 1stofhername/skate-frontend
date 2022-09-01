@@ -4,24 +4,34 @@ import ProfileBar from './components/ProfileBar';
 import Login from './components/Login';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const loginStatus = (localStorage.getItem('isLoggedIn'));
+  const [isLoggedIn, setIsLoggedIn] = useState(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
+  // let isLoggedIn = JSON.parse(window.sessionStorage.getItem('isLoggedIn'));
+  console.log(isLoggedIn);
+  
+  function handleLogin (data) {
+    // const {email, password} = data;
+    //   fetch(`http://localhost:9292/login/${email}&${password}`)
+    //   .then((r)=>r.json())
+    //   .then((data)=>{
+    //     window.sessionStorage.setItem('user', JSON.stringify((data)));
+    //   })
+    //   .then(()=>{
+        setIsLoggedIn(window.sessionStorage.setItem('isLoggedIn', 'true'));
+      // })
+  };
 
-  useEffect(() =>{
-    localStorage.setItem('isLoggedIn', isLoggedIn);
-  },[isLoggedIn]); 
-
-  const handleLogIn = () => {
-    setIsLoggedIn(true);
+  function handleLogout () {
+    setIsLoggedIn(window.sessionStorage.removeItem('isLoggedIn'));
+    console.log(JSON.parse(window.sessionStorage.getItem('isLoggedIn')))
   }
 
   return (
-    loginStatus === "true"?
+    isLoggedIn ?
     <div className="App">
       <header className="App-header">
-       <ProfileBar />
+       <ProfileBar handleLogout={handleLogout} />
       </header>
-    </div>:<Login handleLogIn={handleLogIn} />
+    </div>:<Login handleLogin={handleLogin} />
   );
 }
 

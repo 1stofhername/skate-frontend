@@ -1,8 +1,8 @@
-export default function Login () {
+export default function Login ({ handleLogin }) {
     return (
         <div className="popover" id="sign-up">
             <h2>Login</h2>
-            <form className="sign-up">
+            <form className="sign-up" onSubmit={handleLogin}>
                 <label>
                     Email:
                     <input type="text" name="email" placeholder="Email" />
