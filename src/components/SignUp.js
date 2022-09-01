@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 export default function SignUp (){
 
     const categories = ["skateboard", "scooter", "inline skates", "rollerskates", "other"]
