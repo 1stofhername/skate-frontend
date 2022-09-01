@@ -13,6 +13,7 @@ export default function Login ({ handleLogin }) {
                 </label>
                 <input type="submit" value="Login" />
             </form>
+            Sign Up.
         </div>
     )
 }

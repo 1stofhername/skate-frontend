@@ -1,4 +1,4 @@
-export function CheckIn () {
+export default function CheckIn () {
     return (
         <div className="popover" id="check-in">
             <form className="form" id="check-in-form">

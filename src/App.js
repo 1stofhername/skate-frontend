@@ -1,8 +1,10 @@
+import { Route, Routes, useNavigation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './css/App.css';
 import ProfileBar from './components/ProfileBar';
 import Login from './components/Login';
-import { CheckIn } from './components/CheckIn';
+import CheckIn from './components/CheckIn';
+import SignUp from './components/SignUp';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
@@ -31,6 +33,12 @@ function App() {
     console.log(JSON.parse(window.sessionStorage.getItem('isLoggedIn')))
   }
 
+  <Routes>
+    <Route path="/" element={<App />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/sign-up" element={<SignUp />} />
+  </Routes>
+
   return (
 
     <div className="App">
@@ -39,6 +47,7 @@ function App() {
       </header>
       {isCheckingIn && isLoggedIn ? <CheckIn />:null}
       {!isLoggedIn ? <Login handleLogin={handleLogin} />:null}
+      <SignUp />
     </div> 
 
   );
