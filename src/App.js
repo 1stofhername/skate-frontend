@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
 import ProfileBar from './components/ProfileBar';
 
 function App() {
