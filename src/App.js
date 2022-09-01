@@ -33,6 +33,14 @@ function App() {
     console.log(JSON.parse(window.sessionStorage.getItem('isLoggedIn')))
   }
 
+  function handleSignUpClick () {
+    const signUp = document.getElementById('signup-form');
+    const login = document.getElementById('login-form');
+    signUp.removeAttribute('hidden');
+    login.setAttribute('hidden', true);
+
+  }
+
   <Routes>
     <Route path="/" element={<App />} />
     <Route path="/login" element={<Login />} />
@@ -46,8 +54,8 @@ function App() {
        {isLoggedIn ? <ProfileBar handleLogout={handleLogout} activateCheckingIn={activateCheckingIn} />:null}
       </header>
       {isCheckingIn && isLoggedIn ? <CheckIn />:null}
-      {!isLoggedIn ? <Login handleLogin={handleLogin} />:null}
-      <SignUp />
+      {!isLoggedIn ? <div id="login-form"><Login handleLogin={handleLogin} handleSignUpClick={handleSignUpClick} /></div>:null}
+      <div id="signup-form" hidden><SignUp /></div>
     </div> 
 
   );

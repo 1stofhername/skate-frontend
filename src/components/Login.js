@@ -1,4 +1,4 @@
-export default function Login ({ handleLogin }) {
+export default function Login ({ handleLogin, handleSignUpClick }) {
     return (
         <div className="popover" id="sign-up">
             <h2>Login</h2>
@@ -13,7 +13,7 @@ export default function Login ({ handleLogin }) {
                 </label>
                 <input type="submit" value="Login" />
             </form>
-            Sign Up.
+            <button onClick={handleSignUpClick}>Sign Up.</button>
         </div>
     )
 }
