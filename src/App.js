@@ -2,9 +2,15 @@ import { useState, useEffect } from 'react';
 import './css/App.css';
 import ProfileBar from './components/ProfileBar';
 import Login from './components/Login';
+import { CheckIn } from './components/CheckIn';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
+  const [isCheckingIn, setIsCheckingIn] = useState(false);
+
+  const activateCheckingIn = () => {
+      setIsCheckingIn(true);
+  }
   // let isLoggedIn = JSON.parse(window.sessionStorage.getItem('isLoggedIn'));
   console.log(isLoggedIn);
   
@@ -26,12 +32,15 @@ function App() {
   }
 
   return (
-    isLoggedIn ?
+
     <div className="App">
       <header className="App-header">
-       <ProfileBar handleLogout={handleLogout} />
+       {isLoggedIn ? <ProfileBar handleLogout={handleLogout} activateCheckingIn={activateCheckingIn} />:null}
       </header>
-    </div>:<Login handleLogin={handleLogin} />
+      {isCheckingIn && isLoggedIn ? <CheckIn />:null}
+      {!isLoggedIn ? <Login handleLogin={handleLogin} />:null}
+    </div> 
+
   );
 }
 

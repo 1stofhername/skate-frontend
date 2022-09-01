@@ -18,6 +18,7 @@ export function CheckIn () {
                     <option value="bike">Bike</option>
                     <option value="other">Other</option>
                 </select>
+                <input type="submit" />
             </form>
         </div>
     )
