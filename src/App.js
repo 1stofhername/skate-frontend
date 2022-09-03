@@ -1,13 +1,15 @@
 import { Route, Routes, useNavigation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import './css/App.css';
 import ProfileBar from './components/ProfileBar';
 import Login from './components/Login';
 import CheckIn from './components/CheckIn';
 import SignUp from './components/SignUp';
+import MapContainer from './components/MapContainer';
+import './css/App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
+  const [user, setUser] = useState(JSON.parse(window.sessionStorage.getItem('user')));
   const [isCheckingIn, setIsCheckingIn] = useState(false);
 
   const activateCheckingIn = () => {
@@ -17,15 +19,11 @@ function App() {
   console.log(isLoggedIn);
   
   function handleLogin (data) {
-    // const {email, password} = data;
-    //   fetch(`http://localhost:9292/login/${email}&${password}`)
-    //   .then((r)=>r.json())
-    //   .then((data)=>{
-    //     window.sessionStorage.setItem('user', JSON.stringify((data)));
-    //   })
-    //   .then(()=>{
-        setIsLoggedIn(window.sessionStorage.setItem('isLoggedIn', 'true'));
-      // })
+      const {email, password}=data;
+        fetch(`http://localhost:9292/login/${email}&${password}`)
+        .then((r)=>r.json())
+        .then((data)=>console.log(data))
+        .then(()=>setIsLoggedIn(window.sessionStorage.setItem('isLoggedIn', 'true')))
   };
 
   function handleLogout () {
@@ -56,6 +54,7 @@ function App() {
       {isCheckingIn && isLoggedIn ? <CheckIn />:null}
       {!isLoggedIn ? <div id="login-form"><Login handleLogin={handleLogin} handleSignUpClick={handleSignUpClick} /></div>:null}
       <div id="signup-form" hidden><SignUp /></div>
+      <MapContainer />
     </div> 
 
   );

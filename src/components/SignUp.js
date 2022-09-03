@@ -35,8 +35,6 @@ export default function SignUp (){
         console.log(formData);
     }
 
-    console.log(formData);
-
     return (
         <div className="popover" id="sign-up">
             <h2>Sign Up</h2>
