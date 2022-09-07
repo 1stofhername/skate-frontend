@@ -24,6 +24,7 @@ function App() {
         fetch(`http://localhost:9292/login/${email}&${password}`)
         .then((r)=>r.json())
         .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
+        .then(console.log(user))
         .then(()=>window.sessionStorage.setItem('isLoggedIn', 'true'))
         .then(()=>setIsLoggedIn(window.sessionStorage.getItem('isLoggedIn')))
   };
@@ -31,6 +32,7 @@ function App() {
   function handleLogout () {
     window.sessionStorage.removeItem('isLoggedIn');
     setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
+    window.sessionStorage.removeItem('user');
   }
 
   function handleSignUpClick () {
@@ -56,7 +58,7 @@ function App() {
       {isCheckingIn && isLoggedIn === "true" ? <CheckIn />:null}
       {!isLoggedIn ? <div id="login-form"><Login handleLogin={handleLogin} handleSignUpClick={handleSignUpClick} /></div>:null}
       <div id="signup-form" hidden><SignUp /></div>
-      <MapContainer />
+      {isLoggedIn ? <MapContainer />:null}
     </div> 
 
   );
