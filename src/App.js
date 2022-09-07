@@ -8,27 +8,29 @@ import MapContainer from './components/MapContainer';
 import './css/App.css';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
-  const [user, setUser] = useState(JSON.parse(window.sessionStorage.getItem('user')));
+  // const isLoggedIn = JSON.parse(window.sessionStorage.getItem('isLoggedIn'));
+  const [isLoggedIn, setIsLoggedIn] = useState(window.sessionStorage.getItem('isLoggedIn'));
+  const user = JSON.parse(window.sessionStorage.getItem('user'));
   const [isCheckingIn, setIsCheckingIn] = useState(false);
 
   const activateCheckingIn = () => {
       setIsCheckingIn(true);
   }
   // let isLoggedIn = JSON.parse(window.sessionStorage.getItem('isLoggedIn'));
-  console.log(isLoggedIn);
+  
   
   function handleLogin (data) {
       const {email, password}=data;
         fetch(`http://localhost:9292/login/${email}&${password}`)
         .then((r)=>r.json())
-        .then((data)=>console.log(data))
-        .then(()=>setIsLoggedIn(window.sessionStorage.setItem('isLoggedIn', 'true')))
+        .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
+        .then(()=>window.sessionStorage.setItem('isLoggedIn', 'true'))
+        .then(()=>setIsLoggedIn(window.sessionStorage.getItem('isLoggedIn')))
   };
 
   function handleLogout () {
-    setIsLoggedIn(window.sessionStorage.removeItem('isLoggedIn'));
-    console.log(JSON.parse(window.sessionStorage.getItem('isLoggedIn')))
+    window.sessionStorage.removeItem('isLoggedIn');
+    setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
   }
 
   function handleSignUpClick () {
@@ -51,7 +53,7 @@ function App() {
       <header className="App-header">
        {isLoggedIn ? <ProfileBar handleLogout={handleLogout} activateCheckingIn={activateCheckingIn} />:null}
       </header>
-      {isCheckingIn && isLoggedIn ? <CheckIn />:null}
+      {isCheckingIn && isLoggedIn === "true" ? <CheckIn />:null}
       {!isLoggedIn ? <div id="login-form"><Login handleLogin={handleLogin} handleSignUpClick={handleSignUpClick} /></div>:null}
       <div id="signup-form" hidden><SignUp /></div>
       <MapContainer />

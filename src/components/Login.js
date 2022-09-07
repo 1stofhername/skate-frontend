@@ -6,7 +6,7 @@ export default function Login ({ handleLogin, handleSignUpClick }) {
 
     function handleSubmit (e) {
         e.preventDefault();
-        console.log(`email:${email}, password:${password}`)
+        handleLogin({email:`${email}`, password:`${password}`})
     }
 
     function handleEmailChange (e) {
