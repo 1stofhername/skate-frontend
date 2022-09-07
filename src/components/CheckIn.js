@@ -21,12 +21,12 @@ export default function CheckIn ({ handleCheckIn }) {
                     <option value="Lower Woodland Skate Park">Lower Woodland Skate Park</option>
                 </select>
                 <select name="What are you riding?">
-                    <option value="skateboard">Skateboard</option>
-                    <option value="inline-skates">Inlineskates</option>
-                    <option value="roller-skates">Rollerskates</option>
-                    <option value="scooter">Scooter</option>
-                    <option value="bike">Bike</option>
-                    <option value="other">Other</option>
+                    <option id="skateboard" value="skateboard">Skateboard</option>
+                    <option id="inline-skates" value="inline-skates">Inlineskates</option>
+                    <option id="roller-skates" value="roller-skates">Rollerskates</option>
+                    <option id="scooter" value="scooter">Scooter</option>
+                    <option id="bike" value="bike">Bike</option>
+                    <option id="other" value="other">Other</option>
                 </select>
                 <input type="submit" />
             </form>
