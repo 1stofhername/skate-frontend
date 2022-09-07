@@ -13,7 +13,7 @@ function App() {
   const user = JSON.parse(window.sessionStorage.getItem('user'));
   const [isCheckingIn, setIsCheckingIn] = useState(false);
 
-  const activateCheckingIn = () => {
+  const renderCheckIn = () => {
       setIsCheckingIn(true);
   }
   // let isLoggedIn = JSON.parse(window.sessionStorage.getItem('isLoggedIn'));
@@ -24,7 +24,6 @@ function App() {
         fetch(`http://localhost:9292/login/${email}&${password}`)
         .then((r)=>r.json())
         .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
-        .then(console.log(user))
         .then(()=>window.sessionStorage.setItem('isLoggedIn', 'true'))
         .then(()=>setIsLoggedIn(window.sessionStorage.getItem('isLoggedIn')))
   };
@@ -33,6 +32,20 @@ function App() {
     window.sessionStorage.removeItem('isLoggedIn');
     setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
     window.sessionStorage.removeItem('user');
+  }
+
+  function handleCheckout () {
+    fetch(`http://localhost:9292/users/leave/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        checkedIn: false,
+        skatepark_id: null
+      }),
+    })
+    .then((r)=> r.json(console.log(r)))
   }
 
   function handleSignUpClick () {
@@ -53,7 +66,7 @@ function App() {
 
     <div className="App">
       <header className="App-header">
-       {isLoggedIn ? <ProfileBar handleLogout={handleLogout} activateCheckingIn={activateCheckingIn} />:null}
+       {isLoggedIn && user ? <ProfileBar handleLogout={handleLogout} renderCheckIn={renderCheckIn} handleCheckout={handleCheckout} user={user} />:null}
       </header>
       {isCheckingIn && isLoggedIn === "true" ? <CheckIn />:null}
       {!isLoggedIn ? <div id="login-form"><Login handleLogin={handleLogin} handleSignUpClick={handleSignUpClick} /></div>:null}

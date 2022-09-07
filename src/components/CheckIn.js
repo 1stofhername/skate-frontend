@@ -1,7 +1,17 @@
-export default function CheckIn () {
+import { useState } from 'react';
+
+export default function CheckIn ({ handleCheckIn }) {
+
+    const [skateparkName, setSkateparkName]=useState("");
+    const [category, setCategory] = useState()
+
+    function onCheckInSubmit () {
+        handleCheckIn();
+    }
+
     return (
         <div className="popover" id="check-in">
-            <form className="form" id="check-in-form">
+            <form className="form" id="check-in-form" onSubmit={onCheckInSubmit}>
                 <select name="skate-park">
                     <option value="Cal Anderson Improvised Skate Park">Cal Anderson Improvised Skate Park</option>
                     <option value="Delridge Skate Park">Delridge Skate Park</option>
