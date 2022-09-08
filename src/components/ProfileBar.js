@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { CheckIn } from "./CheckIn";
 
-export default function ProfileBar ({ handleLogout, renderCheckIn, handleCheckout, user }) {
-    console.log(user.checkedIn)
+export default function ProfileBar ({ handleLogout, renderCheckIn, handleCheckout, user, isCheckingIn }) {
 
+    console.log(user.checkedIn)
     function onCheckout () {
         handleCheckout();
     }
@@ -18,15 +18,14 @@ export default function ProfileBar ({ handleLogout, renderCheckIn, handleCheckou
 
     return (
         <div className="bar" id="profile-bar">
-            <img src={null} />
-            <p>Hello, {user.first_name}!</p>
-            { user.checkedIn ? 
+            { user ?
             <div>
+            <p>Hello, {user.first_name}!</p> 
                 <p>Skate Park Name</p>
                 <p>Rollerskates</p>
-                <button onClick={onCheckout}>Leave</button>
-            </div> :
-            <button onClick={onCheckIn}>CheckIn+</button>}
+                {user.checkedIn ?
+                <button onClick={onCheckout}>Leave</button>:<button onClick={onCheckIn}>CheckIn+</button>}
+            </div> :null}
             <button onClick={onLogout}>Logout</button>
         </div>
     )

@@ -10,13 +10,8 @@ import './css/App.css';
 function App() {
   // const isLoggedIn = JSON.parse(window.sessionStorage.getItem('isLoggedIn'));
   const [isLoggedIn, setIsLoggedIn] = useState(window.sessionStorage.getItem('isLoggedIn'));
-  const user = JSON.parse(window.sessionStorage.getItem('user'));
+  const [user, setUser] = useState(JSON.parse(window.sessionStorage.getItem('user')));
   const [isCheckingIn, setIsCheckingIn] = useState(false);
-
-  const renderCheckIn = () => {
-      setIsCheckingIn(true);
-  }
-  // let isLoggedIn = JSON.parse(window.sessionStorage.getItem('isLoggedIn'));
   
   
   function handleLogin (data) {
@@ -24,28 +19,52 @@ function App() {
         fetch(`http://localhost:9292/login/${email}&${password}`)
         .then((r)=>r.json())
         .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
+        .then(()=>setUser(JSON.parse(window.sessionStorage.getItem('user'))))
         .then(()=>window.sessionStorage.setItem('isLoggedIn', 'true'))
         .then(()=>setIsLoggedIn(window.sessionStorage.getItem('isLoggedIn')))
   };
 
   function handleLogout () {
+    handleCheckout();
     window.sessionStorage.removeItem('isLoggedIn');
     setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
     window.sessionStorage.removeItem('user');
+    setUser(JSON.parse(window.sessionStorage.getItem('user')));
   }
 
-  function handleCheckout () {
-    fetch(`http://localhost:9292/users/leave/${user.id}`, {
+  const renderCheckIn = () => {
+    setIsCheckingIn(true);
+  }
+
+  function handleCheckIn (skateParkName, category) {
+    fetch(`http://localhost:9292/users/checkin/${user.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        checkedIn: false,
-        skatepark_id: null
+        "checkedIn": true,
+        "skatepark_id": null
       }),
     })
-    .then((r)=> r.json(console.log(r)))
+    .then((r)=> r.json())
+    .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
+  };
+
+  function handleCheckout () {
+    fetch(`http://localhost:9292/users/checkout/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "checkedIn": false,
+        "skatepark_id": null
+      }),
+    })
+    .then((r)=> r.json())
+    .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
+    .then(setUser(JSON.parse(window.sessionStorage.getItem('user'))))
   }
 
   function handleSignUpClick () {
@@ -66,9 +85,18 @@ function App() {
 
     <div className="App">
       <header className="App-header">
-       {isLoggedIn && user ? <ProfileBar handleLogout={handleLogout} renderCheckIn={renderCheckIn} handleCheckout={handleCheckout} user={user} />:null}
+       {isLoggedIn && user ? 
+        <ProfileBar 
+          handleLogout={handleLogout} 
+          renderCheckIn={renderCheckIn} 
+          handleCheckin={handleCheckIn} 
+          handleCheckout={handleCheckout} 
+          isCheckingIn={isCheckingIn}
+          user={user} /> :
+          null
+          }
       </header>
-      {isCheckingIn && isLoggedIn === "true" ? <CheckIn />:null}
+      {isCheckingIn && isLoggedIn === "true" ? <CheckIn userId={user.id} skateparkId={user.skatepark_id} categoryId={user.category_id} />:null}
       {!isLoggedIn ? <div id="login-form"><Login handleLogin={handleLogin} handleSignUpClick={handleSignUpClick} /></div>:null}
       <div id="signup-form" hidden><SignUp /></div>
       {isLoggedIn ? <MapContainer />:null}
