@@ -1,45 +1,47 @@
 import { useState } from 'react';
 
-export default function SignUp (){
+export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
 
     const categories = ["skateboard", "scooter", "inline skates", "rollerskates", "other"]
     const [firstName, setFirstName]=useState("");
     const [lastName, setLastName]=useState("");
     const [email, setEmail]=useState("");
+    const [password, setPassword]=useState("");
     const [category, setCategory]=useState("skateboard");
-    const [errors, setErrors] = useState([]);
-    const errorArray=[];
+    
 
-    function handleCheckInFormSubmit (e) {
+    function onSignUpFormSubmit (e) {
         e.preventDefault();
+        const formData = { "first_name": firstName, "last_name": lastName, "email": email, "category": category, "password": password };
         setErrors([]);
-        console.log(errors);
-        const formData = { "first_name": firstName, "last_name": lastName, "email": email, "category": category };
         validate(formData);
-    }
-
-    function validate (data) {
-        for (const property in data) {
-            if(property !== 'email') {
-                if(data[property]){
-                console.log('yes')
-            } else {
-                handleInvalidInput(property)
-            } } else {
-                if (data[property] && data[property].includes('@')){
-                    console.log('yes')
-                } else {
-                    handleInvalidInput(property)
-                }
-            }
+        if (errors.length === 0) {
+            handleSignUp(formData)
         }
     }
 
-    function handleInvalidInput (value) {
-            const text = value.replace('_', ' ');
-            errorArray.push(`Invalid ${text}`);
-            setErrors(errorArray)
-        }
+    // function validate (data) {
+    //     for (const property in data) {
+    //         if(property !== 'email') {
+    //             if(data[property]){
+    //             console.log('yes')
+    //         } else {
+    //             handleInvalidInput(property)
+    //         } } else {
+    //             if (data[property] && data[property].includes('@')){
+    //                 console.log('yes')
+    //             } else {
+    //                 handleInvalidInput(property)
+    //             }
+    //         }
+    //     }
+    // }
+
+    // function handleInvalidInput (value) {
+    //         const text = value.replace('_', ' ');
+    //         errorArray.push(`Invalid ${text}`);
+    //         setErrors(errorArray)
+    //     }
     
 
     function handleFirstNameChange (e) {
@@ -57,6 +59,10 @@ export default function SignUp (){
         console.log(email);
     }
 
+    function handlePasswordChange (e) {
+        setPassword(e.target.value);
+    }
+
     function handleCategoryChange (e) {
         setCategory(e.target.value);
         console.log(category)
@@ -65,7 +71,7 @@ export default function SignUp (){
     return (
         <div className="popover" id="sign-up">
             <h2>Sign Up</h2>
-            <form className="sign-up" onSubmit={handleCheckInFormSubmit}>
+            <form className="sign-up" name="sign-up" onSubmit={onSignUpFormSubmit}>
                 <span className="user-info">
                     <label>
                         First Name:
@@ -78,6 +84,10 @@ export default function SignUp (){
                     <label>
                         Email:
                         <input type="text" id="email" placeholder="ChakaZulu@email.com" value={email} onChange={handleEmailChange} />
+                    </label>
+                    <label>
+                        Password:
+                        <input type="password" id="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
                     </label>
                 </span>
                 <span className="category-form">

@@ -12,19 +12,24 @@ function App() {
   const [user, setUser] = useState(JSON.parse(window.sessionStorage.getItem('user')));
   const [isCheckingIn, setIsCheckingIn] = useState(false);
   const [skateparks, setSkateparks] = useState("");
+  const [activeCategory, setActiveCategory]=useState("");
+  const [activeSkatepark, setActiveSkatepark]=useState("");
+  const [errors, setErrors] = useState([]);
+  const errorArray=[];
 
   useEffect(()=>{
     fetch('http://localhost:9292/skateparks')
     .then((r)=>r.json())
-    .then((data)=>setSkateparks(data))
-  },[]);
+    .then((data)=>console.log(data))
+  },[user]);
   
   function handleLogin (data) {
       const {email, password}=data;
         fetch(`http://localhost:9292/login/${email}&${password}`)
         .then((r)=>r.json())
-        .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
-        .then(()=>setUser(JSON.parse(window.sessionStorage.getItem('user'))))
+        .then(data=>handleUserChange(data))
+        // .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
+        // .then(()=>setUser(JSON.parse(window.sessionStorage.getItem('user'))))
         .then(()=>window.sessionStorage.setItem('isLoggedIn', 'true'))
         .then(()=>setIsLoggedIn(window.sessionStorage.getItem('isLoggedIn')))
   };
@@ -33,8 +38,7 @@ function App() {
     handleCheckout();
     window.sessionStorage.removeItem('isLoggedIn');
     setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
-    window.sessionStorage.removeItem('user');
-    setUser(JSON.parse(window.sessionStorage.getItem('user')));
+    handleUserChange(null);
   }
 
   const renderCheckIn = () => {
@@ -55,9 +59,10 @@ function App() {
       }),
     })
     .then((r)=> r.json())
-    .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
-    .then(()=>setUser(JSON.parse(window.sessionStorage.getItem('user'))))
+    .then(data=>handleUserChange(data))
     .then(()=>setIsCheckingIn(false))
+    .then(setActiveSkatepark(skatepark))
+    .then(setActiveCategory(category))
   };
 
   function handleCheckout () {
@@ -72,17 +77,68 @@ function App() {
       }),
     })
     .then((r)=> r.json())
-    .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
-    .then(setUser(JSON.parse(window.sessionStorage.getItem('user'))))
+    .then(data=>handleUserChange(data))
+    .then(setActiveSkatepark(""))
+    .then(setActiveCategory(""))
+    .then(console.log(`active cat: ${activeCategory} activeP: ${activeSkatepark}`))
   }
 
-  function handleSignUpClick () {
+  function handleSignUp (data) {
+    fetch('http://localhost:9292/users/signup', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(
+        data
+        ),
+    })
+    .then((r)=>r.json())
+    .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
+    .then(setUser(JSON.parse(window.sessionStorage.getItem('user'))))
+    .then(()=>{window.sessionStorage.setItem('isLoggedIn', true);
+    setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')))})
+  }
+
+  function onSignUpClick () {
     const signUp = document.getElementById('signup-form');
     const login = document.getElementById('login-form');
     signUp.removeAttribute('hidden');
     login.setAttribute('hidden', true);
-
   }
+
+  function validate (data) {
+    for (const property in data) {
+        if(property !== 'email') {
+            if(data[property]){
+            console.log('yes')
+        } else {
+            handleInvalidInput(property)
+        } } else {
+            if (data[property] && data[property].includes('@')){
+                console.log('yes')
+            } else {
+                handleInvalidInput(property)
+            }
+        }
+    }
+}
+
+const handleUserChange = (data) => {
+  window.sessionStorage.setItem('user', JSON.stringify(data));
+  setUser(()=>JSON.parse(window.sessionStorage.getItem('user')));
+}
+
+const handleIsLoggedInChange = (boolean) => {
+  window.sessionStorage.setItem('isLoggedIn', boolean);
+  setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
+}
+
+function handleInvalidInput (value) {
+        const text = value.replace('_', ' ');
+        errorArray.push(`Invalid ${text}`);
+        setErrors(errorArray)
+    }
 
   <Routes>
     <Route path="/" element={<App />} />
@@ -100,7 +156,10 @@ function App() {
           renderCheckIn={renderCheckIn} 
           handleCheckout={handleCheckout} 
           isCheckingIn={isCheckingIn}
-          user={user} /> :
+          user={user}
+          activeSkatepark={activeSkatepark}
+          activeCategory={activeCategory} 
+          /> :
           null
           }
       </header>
@@ -113,9 +172,16 @@ function App() {
           />:
           null
       }
-      {!isLoggedIn ? <div id="login-form"><Login handleLogin={handleLogin} handleSignUpClick={handleSignUpClick} /></div>:null}
-      <div id="signup-form" hidden><SignUp /></div>
-      {isLoggedIn ? <SkateparksMapContainer />:null}
+      {!isLoggedIn ? <div id="login-form"><Login handleLogin={handleLogin} onSignUpClick={onSignUpClick} /></div>:null}
+      <div id="signup-form" hidden>
+        <SignUp 
+          validate={validate} 
+          errors={errors} 
+          setErrors={setErrors} 
+          handleSignUp={handleSignUp}
+          />
+      </div>
+        {/* {isLoggedIn ? <SkateparksMapContainer skateparks={skateparks} />:null} */}
     </div> 
 
   );

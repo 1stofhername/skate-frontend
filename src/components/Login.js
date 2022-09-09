@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Login ({ handleLogin, handleSignUpClick }) {
+export default function Login ({ handleLogin, onSignUpClick }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -31,7 +31,7 @@ export default function Login ({ handleLogin, handleSignUpClick }) {
                 </label>
                 <input type="submit" value="Login" />
             </form>
-            <button onClick={handleSignUpClick}>Sign Up.</button>
+            <button onClick={onSignUpClick}>Sign Up.</button>
         </div>
     )
 }

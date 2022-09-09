@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { CheckIn } from "./CheckIn";
 
-export default function ProfileBar ({ handleLogout, renderCheckIn, handleCheckout, user, isCheckingIn }) {
+export default function ProfileBar ({ handleLogout, renderCheckIn, handleCheckout, user, isCheckingIn, activeSkatepark, activeCategory }) {
 
     console.log(`checkin: ${user.checkedIn}, isCheckingIn: ${isCheckingIn}`)
+    console.log(`cat ${activeCategory}, park ${activeSkatepark}`)
     function onCheckout () {
         handleCheckout();
     }
@@ -21,8 +22,8 @@ export default function ProfileBar ({ handleLogout, renderCheckIn, handleCheckou
             { user ?
             <div>
             <p>Hello, {user.first_name}!</p> 
-                <p>Skate Park Name</p>
-                <p>Rollerskates</p>
+                {activeSkatepark?<p>Active at: {activeSkatepark}</p>:null}
+                {activeCategory?<p>Riding: {activeCategory}</p>:null}
                 {user.checkedIn ?
                 <button onClick={onCheckout}>Leave</button>:null}
                 {!user.checkedIn && !isCheckingIn ? <button onClick={onCheckInClick}>CheckIn+</button>:null}
