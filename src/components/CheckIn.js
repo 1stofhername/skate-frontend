@@ -3,15 +3,17 @@ import { useEffect, useState } from 'react';
 export default function CheckIn ({ userId, skateparkId, handleCheckIn }) {
 
     const [skateparkName, setSkateparkName]=useState("");
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState("skateboard");
 
     function handleSkateParkNameChange (e) {
         setSkateparkName(e.target.value);
+        console.log(skateparkName)
     }
 
     function handleCategoryChange (e) {
         const value = (e.target.value).toLowerCase();
         setCategory(value);
+        console.log(category)
     }
 
     function onCheckInSubmit (e) {
@@ -33,6 +35,7 @@ export default function CheckIn ({ userId, skateparkId, handleCheckIn }) {
                     <option>Lower Woodland Skate Park</option>
                 </select>
                 <select onChange={handleCategoryChange} name="What are you riding?">
+                    <option disabled selected>Choose a your ride</option>
                     <option id="skateboard">Skateboard</option>
                     <option id="inlineskates">Inlineskates</option>
                     <option id="rollerskates">Rollerskates</option>

@@ -3,12 +3,12 @@ import { CheckIn } from "./CheckIn";
 
 export default function ProfileBar ({ handleLogout, renderCheckIn, handleCheckout, user, isCheckingIn }) {
 
-    console.log(user.checkedIn)
+    console.log(`checkin: ${user.checkedIn}, isCheckingIn: ${isCheckingIn}`)
     function onCheckout () {
         handleCheckout();
     }
 
-    function onCheckIn (e) {
+    function onCheckInClick (e) {
         renderCheckIn(e)
     }
 
@@ -25,7 +25,7 @@ export default function ProfileBar ({ handleLogout, renderCheckIn, handleCheckou
                 <p>Rollerskates</p>
                 {user.checkedIn ?
                 <button onClick={onCheckout}>Leave</button>:null}
-                {!user.checkedIn && !isCheckingIn ? <button onClick={onCheckIn}>CheckIn+</button>:null}
+                {!user.checkedIn && !isCheckingIn ? <button onClick={onCheckInClick}>CheckIn+</button>:null}
             </div> :null}
             <button onClick={onLogout}>Logout</button>
         </div>

@@ -33,6 +33,7 @@ function App() {
 
   const renderCheckIn = () => {
     setIsCheckingIn(true);
+    console.log(isCheckingIn)
   }
 
   function handleCheckIn (skatepark, category) {
@@ -50,6 +51,7 @@ function App() {
     .then((r)=> r.json())
     .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
     .then(()=>setUser(JSON.parse(window.sessionStorage.getItem('user'))))
+    .then(()=>setIsCheckingIn(false))
   };
 
   function handleCheckout () {
@@ -96,7 +98,7 @@ function App() {
           null
           }
       </header>
-      {isCheckingIn && isLoggedIn === "true" ? 
+      {isLoggedIn && isCheckingIn ? 
         <CheckIn 
           userId={user.id} 
           skateparkId={user.skatepark_id} 
