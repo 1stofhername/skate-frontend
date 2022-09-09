@@ -4,14 +4,20 @@ import ProfileBar from './components/ProfileBar';
 import Login from './components/Login';
 import CheckIn from './components/CheckIn';
 import SignUp from './components/SignUp';
-import MapContainer from './components/MapContainer';
+import SkateparksMapContainer from './components/SkateparksMapContainer';
 import './css/App.css';
 
 function App() {
-  // const isLoggedIn = JSON.parse(window.sessionStorage.getItem('isLoggedIn'));
   const [isLoggedIn, setIsLoggedIn] = useState(window.sessionStorage.getItem('isLoggedIn'));
   const [user, setUser] = useState(JSON.parse(window.sessionStorage.getItem('user')));
   const [isCheckingIn, setIsCheckingIn] = useState(false);
+  const [skateparks, setSkateparks] = useState("");
+
+  useEffect(()=>{
+    fetch('http://localhost:9292/skateparks')
+    .then((r)=>r.json())
+    .then((data)=>setSkateparks(data))
+  },[]);
   
   function handleLogin (data) {
       const {email, password}=data;
@@ -109,7 +115,7 @@ function App() {
       }
       {!isLoggedIn ? <div id="login-form"><Login handleLogin={handleLogin} handleSignUpClick={handleSignUpClick} /></div>:null}
       <div id="signup-form" hidden><SignUp /></div>
-      {isLoggedIn ? <MapContainer />:null}
+      {isLoggedIn ? <SkateparksMapContainer />:null}
     </div> 
 
   );
