@@ -24,7 +24,8 @@ export default function ProfileBar ({ handleLogout, renderCheckIn, handleCheckou
                 <p>Skate Park Name</p>
                 <p>Rollerskates</p>
                 {user.checkedIn ?
-                <button onClick={onCheckout}>Leave</button>:<button onClick={onCheckIn}>CheckIn+</button>}
+                <button onClick={onCheckout}>Leave</button>:null}
+                {!user.checkedIn && !isCheckingIn ? <button onClick={onCheckIn}>CheckIn+</button>:null}
             </div> :null}
             <button onClick={onLogout}>Logout</button>
         </div>

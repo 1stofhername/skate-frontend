@@ -10,7 +10,8 @@ export default function CheckIn ({ userId, skateparkId, handleCheckIn }) {
     }
 
     function handleCategoryChange (e) {
-        setCategory(e.target.value);
+        const value = (e.target.value).toLowerCase();
+        setCategory(value);
     }
 
     function onCheckInSubmit (e) {
@@ -20,23 +21,24 @@ export default function CheckIn ({ userId, skateparkId, handleCheckIn }) {
 
     return (
         <div className="popover" id="check-in">
+            <p>Check In</p>
             <form onSubmit={onCheckInSubmit} className="form" id="check-in-form">
                 <select name="skate-park" onChange={handleSkateParkNameChange}>
-                    <option value="" disabled selected>Choose a skatepark</option>
-                    <option value="Cal Anderson Improvised Skate Park">Cal Anderson Improvised Skate Park</option>
-                    <option value="Delridge Skate Park">Delridge Skate Park</option>
-                    <option value="Jefferson Skate Park">Jefferson Skate Park</option>
-                    <option value="Judkins Skate Park">Judkins Skate Park</option>
-                    <option value="Seattle Center Skate Plaza">Seattle Center Skate Plaza</option>
-                    <option value="Lower Woodland Skate Park">Lower Woodland Skate Park</option>
+                    <option disabled selected>Choose a skatepark</option>
+                    <option>Cal Anderson Improvised Skate Park</option>
+                    <option>Delridge Skate Park</option>
+                    <option>Jefferson Skate Park</option>
+                    <option>Judkins Skate Park</option>
+                    <option>Seattle Center Skate Plaza</option>
+                    <option>Lower Woodland Skate Park</option>
                 </select>
                 <select onChange={handleCategoryChange} name="What are you riding?">
-                    <option id="skateboard" value="skateboard">Skateboard</option>
-                    <option id="inline-skates" value="inline-skates">Inlineskates</option>
-                    <option id="roller-skates" value="roller-skates">Rollerskates</option>
-                    <option id="scooter" value="scooter">Scooter</option>
-                    <option id="bike" value="bike">Bike</option>
-                    <option id="other" value="other">Other</option>
+                    <option id="skateboard">Skateboard</option>
+                    <option id="inlineskates">Inlineskates</option>
+                    <option id="rollerskates">Rollerskates</option>
+                    <option id="scooter">Scooter</option>
+                    <option id="bike">Bike</option>
+                    <option id="other">Other</option>
                 </select>
                 <input type="submit" />
             </form>

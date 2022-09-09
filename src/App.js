@@ -13,7 +13,6 @@ function App() {
   const [user, setUser] = useState(JSON.parse(window.sessionStorage.getItem('user')));
   const [isCheckingIn, setIsCheckingIn] = useState(false);
   
-  
   function handleLogin (data) {
       const {email, password}=data;
         fetch(`http://localhost:9292/login/${email}&${password}`)
@@ -36,7 +35,7 @@ function App() {
     setIsCheckingIn(true);
   }
 
-  function handleCheckIn (skateParkName, category) {
+  function handleCheckIn (skatepark, category) {
     fetch(`http://localhost:9292/users/checkin/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -44,11 +43,13 @@ function App() {
       },
       body: JSON.stringify({
         "checkedIn": true,
-        "skatepark_id": null
+        "skatepark_name": skatepark,
+        "category_name": category
       }),
     })
     .then((r)=> r.json())
     .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
+    .then(()=>setUser(JSON.parse(window.sessionStorage.getItem('user'))))
   };
 
   function handleCheckout () {
@@ -89,14 +90,21 @@ function App() {
         <ProfileBar 
           handleLogout={handleLogout} 
           renderCheckIn={renderCheckIn} 
-          handleCheckin={handleCheckIn} 
           handleCheckout={handleCheckout} 
           isCheckingIn={isCheckingIn}
           user={user} /> :
           null
           }
       </header>
-      {isCheckingIn && isLoggedIn === "true" ? <CheckIn userId={user.id} skateparkId={user.skatepark_id} categoryId={user.category_id} />:null}
+      {isCheckingIn && isLoggedIn === "true" ? 
+        <CheckIn 
+          userId={user.id} 
+          skateparkId={user.skatepark_id} 
+          categoryId={user.category_id}
+          handleCheckIn={handleCheckIn}  
+          />:
+          null
+      }
       {!isLoggedIn ? <div id="login-form"><Login handleLogin={handleLogin} handleSignUpClick={handleSignUpClick} /></div>:null}
       <div id="signup-form" hidden><SignUp /></div>
       {isLoggedIn ? <MapContainer />:null}
