@@ -8,22 +8,39 @@ export default function SignUp (){
     const [email, setEmail]=useState("");
     const [category, setCategory]=useState("skateboard");
     const [errors, setErrors] = useState([]);
+    const errorArray=[];
 
     function handleCheckInFormSubmit (e) {
         e.preventDefault();
-        setErrors("");
+        setErrors([]);
+        console.log(errors);
         const formData = { "first_name": firstName, "last_name": lastName, "email": email, "category": category };
-    
-        if (!firstName) {
-            setErrors('Enter your first name');
-        } else if (!lastName) {
-            setErrors('Enter your last name')
-        } else if (!email || !(email.includes('@'))) {
-            setErrors('Invalid email')
-        } else {
-            console.log(formData)
+        validate(formData);
+    }
+
+    function validate (data) {
+        for (const property in data) {
+            if(property !== 'email') {
+                if(data[property]){
+                console.log('yes')
+            } else {
+                handleInvalidInput(property)
+            } } else {
+                if (data[property] && data[property].includes('@')){
+                    console.log('yes')
+                } else {
+                    handleInvalidInput(property)
+                }
+            }
         }
     }
+
+    function handleInvalidInput (value) {
+            const text = value.replace('_', ' ');
+            errorArray.push(`Invalid ${text}`);
+            setErrors(errorArray)
+        }
+    
 
     function handleFirstNameChange (e) {
         setFirstName(e.target.value);
@@ -70,9 +87,9 @@ export default function SignUp (){
                 <button type="submit">Create</button>
             </form>
             {errors.length > 0 
-              ? <p style={{ color: "red" }}>
-                {errors}
-                </p>
+              ? errors.map(error=><p key={error} style={{ color: "red" }}>
+                {error}
+                </p>)
                 
               : null}
         </div>
