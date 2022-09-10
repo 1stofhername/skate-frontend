@@ -9,6 +9,7 @@ import './css/App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(window.sessionStorage.getItem('isLoggedIn'));
+  const [isMapLoading, setIsMapLoading]=useState(true);
   const [user, setUser] = useState(JSON.parse(window.sessionStorage.getItem('user')));
   const [isCheckingIn, setIsCheckingIn] = useState(false);
   const [skateparks, setSkateparks] = useState("");
@@ -20,16 +21,15 @@ function App() {
   useEffect(()=>{
     fetch('http://localhost:9292/skateparks')
     .then((r)=>r.json())
-    .then((data)=>console.log(data))
-  },[user]);
+    .then((data)=>setSkateparks(data))
+    .then(setIsMapLoading(false))
+  },[]);
   
   function handleLogin (data) {
       const {email, password}=data;
         fetch(`http://localhost:9292/login/${email}&${password}`)
         .then((r)=>r.json())
         .then(data=>handleUserChange(data))
-        // .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
-        // .then(()=>setUser(JSON.parse(window.sessionStorage.getItem('user'))))
         .then(()=>window.sessionStorage.setItem('isLoggedIn', 'true'))
         .then(()=>setIsLoggedIn(window.sessionStorage.getItem('isLoggedIn')))
   };
@@ -181,7 +181,7 @@ function handleInvalidInput (value) {
           handleSignUp={handleSignUp}
           />
       </div>
-        {/* {isLoggedIn ? <SkateparksMapContainer skateparks={skateparks} />:null} */}
+        {isLoggedIn ? <SkateparksMapContainer skateparks={skateparks} isLoading={isMapLoading} />:null}
     </div> 
 
   );
