@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Login ({ handleLogin, onSignUpClick }) {
+export default function Login ({ handleLogin, onSignUpClick, error }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -20,7 +20,7 @@ export default function Login ({ handleLogin, onSignUpClick }) {
     return (
         <div className="popover" id="sign-up">
             <h2>Login</h2>
-            <form className="sign-up" onSubmit={handleSubmit}>
+            <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
                 <label>
                     Email:
                     <input type="text" name="email" placeholder="Email" onChange={handleEmailChange}/>
@@ -32,6 +32,7 @@ export default function Login ({ handleLogin, onSignUpClick }) {
                 <input type="submit" value="Login" />
             </form>
             <button onClick={onSignUpClick}>Sign Up.</button>
+            {error? <p className='error-message'>{error}</p>:null}
         </div>
     )
 }

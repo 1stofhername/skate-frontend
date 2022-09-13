@@ -9,7 +9,7 @@ import './css/App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(window.sessionStorage.getItem('isLoggedIn'));
-  const [isMapLoading, setIsMapLoading]=useState(true);
+  // const [isMapLoading, setIsMapLoading]=useState(true);
   const [isLoggingIn, setIsLoggingIn] = useState(true);
   const [isCheckingIn, setIsCheckingIn] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
@@ -19,8 +19,10 @@ function App() {
   
   const [activeCategory, setActiveCategory]=useState("");
   const [activeSkatepark, setActiveSkatepark]=useState("");
+
+  const [loginError, setLoginError] = useState("");
   
-  const [errors, setErrors] = useState([]);
+  const [signupErrors, setSignupErrors] = useState([]);
   const errorArray=[];
 
   ////// Server calls ///////
@@ -29,7 +31,7 @@ function App() {
     fetch('http://localhost:9292/skateparks')
     .then((r)=>r.json())
     .then((data)=>setSkateparks(data))
-    .then(setIsMapLoading(false))
+    // .then(setIsMapLoading(false))
   },[]);
 
   // Login
@@ -37,10 +39,18 @@ function App() {
   function handleLogin (data) {
       const {email, password}=data;
         fetch(`http://localhost:9292/login/${email}&${password}`)
-        .then((r)=>r.json())
-        .then(data=>handleUserChange(data))
-        .then(()=>window.sessionStorage.setItem('isLoggedIn', 'true'))
-        .then(()=>setIsLoggedIn(window.sessionStorage.getItem('isLoggedIn')))
+        .then((r)=>(r.json()))
+        .then(data=>{
+          if(data.id) {
+            handleUserChange(data);
+            handleIsLoggedInChange(true);
+          } else {
+            setLoginError(data);
+          }
+        })
+        // .then(data=>handleUserChange(data))
+        // .then(()=>window.sessionStorage.setItem('isLoggedIn', 'true'))
+        // .then(()=>setIsLoggedIn(window.sessionStorage.getItem('isLoggedIn')))
   };
 
   // Check in
@@ -62,6 +72,7 @@ function App() {
     .then(()=>setIsCheckingIn(false))
     .then(setActiveSkatepark(skatepark))
     .then(setActiveCategory(category))
+    .then(console.log(activeSkatepark))
   };
 
   // Check out
@@ -165,7 +176,7 @@ function App() {
 function handleInvalidInput (value) {
         const text = value.replace('_', ' ');
         errorArray.push(`Invalid ${text}`);
-        setErrors(errorArray)
+        setSignupErrors(errorArray)
     }
 
   <Routes>
@@ -205,18 +216,19 @@ function handleInvalidInput (value) {
           <Login 
             handleLogin={handleLogin} 
             onSignUpClick={onSignUpClick} 
+            error={loginError}
             />
         </div>
         : null}
       {isSigningUp && !isLoggedIn ? <div id="signup-form">
         <SignUp 
           validate={validate} 
-          errors={errors} 
-          setErrors={setErrors} 
+          errors={signupErrors} 
+          setErrors={setSignupErrors} 
           handleSignUp={handleSignUp}
           />
       </div>:null}
-        {isLoggedIn ? <SkateparksMapContainer skateparks={skateparks} isLoading={isMapLoading} />:null}
+        {isLoggedIn ? <SkateparksMapContainer skateparks={skateparks} />:null}
     </div> 
 
   );

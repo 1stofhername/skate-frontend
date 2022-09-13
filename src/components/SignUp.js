@@ -95,7 +95,7 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
                 <button type="submit">Create</button>
             </form>
             {errors.length > 0 
-              ? errors.map(error=><p key={error} style={{ color: "red" }}>
+              ? errors.map(error=><p className="error-message" key={error}>
                 {error}
                 </p>)
                 

@@ -25,3 +25,7 @@ input[invalid] {
   border-width: 1px;
   border-color: red;
 }
+
+p.error-message {
+  color: red;
+}
