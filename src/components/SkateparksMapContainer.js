@@ -1,7 +1,7 @@
 import SkateparkCard from "./SkateparkCard";
 import { useState } from 'react';
 
-export default function SkateparkMapContainer ({ skateparks, isLoading }) {
+export default function SkateparkMapContainer ({ skateparks }) {
 
     return(
     <div>

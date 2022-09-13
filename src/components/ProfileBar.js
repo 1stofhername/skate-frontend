@@ -3,7 +3,7 @@ import { CheckIn } from "./CheckIn";
 
 export default function ProfileBar ({ handleLogout, renderCheckIn, handleCheckout, user, isCheckingIn, activeSkatepark, activeCategory }) {
 
-    console.log(`checkin: ${user.checkedIn}, isCheckingIn: ${isCheckingIn}`)
+    console.log(`checkin: ${user.checkedIn}`)
     console.log(`cat ${activeCategory}, park ${activeSkatepark}`)
     function onCheckout () {
         handleCheckout();

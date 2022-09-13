@@ -10,6 +10,7 @@ import './css/App.css';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(window.sessionStorage.getItem('isLoggedIn'));
   const [isMapLoading, setIsMapLoading]=useState(true);
+  const [isLoggingIn, setIsLoggingIn] = useState(true);
   const [isCheckingIn, setIsCheckingIn] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
   
@@ -98,10 +99,11 @@ function App() {
     .then((r)=>r.json())
     .then((data)=>handleUserChange(data))
     .then(()=>{
-      window.sessionStorage.setItem('isLoggedIn', true);
-      setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')))
+      handleIsLoggedInChange(true)
     })
   }
+
+  // State/attribute change handlers
 
   function handleLogout () {
     handleCheckout();
@@ -117,6 +119,7 @@ function App() {
 
   function onSignUpClick () {
     handleIsSigningUpChange(true);
+    toggleIsLoggingIn();
   }
 
   const handleUserChange = (data) => {
@@ -125,12 +128,17 @@ function App() {
   }
 
   const handleIsLoggedInChange = (boolean) => {
+    console.log(boolean);
     window.sessionStorage.setItem('isLoggedIn', boolean);
     setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
   }
   
   const handleIsSigningUpChange = (boolean) => {
     setIsSigningUp(boolean);
+  }
+
+  const toggleIsLoggingIn = ()=>{
+    setIsLoggingIn(!isLoggingIn);
   }
 
   ///// Helper functions /////
@@ -192,7 +200,7 @@ function handleInvalidInput (value) {
           />:
           null
       }
-      {!isLoggedIn ? 
+      {!isLoggedIn && isLoggingIn ? 
         <div id="login-form">
           <Login 
             handleLogin={handleLogin} 
