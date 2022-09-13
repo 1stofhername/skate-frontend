@@ -7,16 +7,20 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
     const [lastName, setLastName]=useState("");
     const [email, setEmail]=useState("");
     const [password, setPassword]=useState("");
-    const [category, setCategory]=useState("skateboard");
-    
 
     function onSignUpFormSubmit (e) {
         e.preventDefault();
-        const formData = { "first_name": firstName, "last_name": lastName, "email": email, "category": category, "password": password };
+        const formData = { 
+            "first_name": firstName, 
+            "last_name": lastName, 
+            "email": email, 
+            "password": password,
+            "checkedIn": false
+        };
         setErrors([]);
         validate(formData);
         if (errors.length === 0) {
-            handleSignUp(formData)
+            console.log(formData)
         }
     }
 
@@ -63,11 +67,6 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
         setPassword(e.target.value);
     }
 
-    function handleCategoryChange (e) {
-        setCategory(e.target.value);
-        console.log(category)
-    }
-
     return (
         <div className="popover" id="sign-up">
             <h2>Sign Up</h2>
@@ -90,10 +89,10 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
                         <input type="password" id="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
                     </label>
                 </span>
-                <span className="category-form">
+                {/* <span className="category-form">
                     <select>{categories.map(option=>(<option key={option} id={option} value={category} name="category" onChange={handleCategoryChange}>{option}</option>))}
                     </select>
-                </span>
+                </span> */}
                 <button type="submit">Create</button>
             </form>
             {errors.length > 0 
