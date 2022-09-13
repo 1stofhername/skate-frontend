@@ -10,13 +10,19 @@ import './css/App.css';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(window.sessionStorage.getItem('isLoggedIn'));
   const [isMapLoading, setIsMapLoading]=useState(true);
-  const [user, setUser] = useState(JSON.parse(window.sessionStorage.getItem('user')));
   const [isCheckingIn, setIsCheckingIn] = useState(false);
+  const [isSigningUp, setIsSigningUp] = useState(false);
+  
+  const [user, setUser] = useState(JSON.parse(window.sessionStorage.getItem('user')));
   const [skateparks, setSkateparks] = useState("");
+  
   const [activeCategory, setActiveCategory]=useState("");
   const [activeSkatepark, setActiveSkatepark]=useState("");
+  
   const [errors, setErrors] = useState([]);
   const errorArray=[];
+
+  ////// Server calls ///////
 
   useEffect(()=>{
     fetch('http://localhost:9292/skateparks')
@@ -24,6 +30,8 @@ function App() {
     .then((data)=>setSkateparks(data))
     .then(setIsMapLoading(false))
   },[]);
+
+  // Login
   
   function handleLogin (data) {
       const {email, password}=data;
@@ -34,17 +42,7 @@ function App() {
         .then(()=>setIsLoggedIn(window.sessionStorage.getItem('isLoggedIn')))
   };
 
-  function handleLogout () {
-    handleCheckout();
-    window.sessionStorage.removeItem('isLoggedIn');
-    setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
-    handleUserChange(null);
-  }
-
-  const renderCheckIn = () => {
-    setIsCheckingIn(true);
-    console.log(isCheckingIn)
-  }
+  // Check in
 
   function handleCheckIn (skatepark, category) {
     fetch(`http://localhost:9292/users/checkin/${user.id}`, {
@@ -65,6 +63,8 @@ function App() {
     .then(setActiveCategory(category))
   };
 
+  // Check out
+
   function handleCheckout () {
     fetch(`http://localhost:9292/users/checkout/${user.id}`, {
       method: "PATCH",
@@ -83,6 +83,8 @@ function App() {
     .then(console.log(`active cat: ${activeCategory} activeP: ${activeSkatepark}`))
   }
 
+  // Sign up
+
   function handleSignUp (data) {
     fetch('http://localhost:9292/users/signup', {
       method: "POST",
@@ -94,18 +96,44 @@ function App() {
         ),
     })
     .then((r)=>r.json())
-    .then((data)=>window.sessionStorage.setItem('user', JSON.stringify(data)))
-    .then(setUser(JSON.parse(window.sessionStorage.getItem('user'))))
-    .then(()=>{window.sessionStorage.setItem('isLoggedIn', true);
-    setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')))})
+    .then((data)=>handleUserChange(data))
+    .then(()=>{
+      window.sessionStorage.setItem('isLoggedIn', true);
+      setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')))
+    })
+  }
+
+  function handleLogout () {
+    handleCheckout();
+    window.sessionStorage.removeItem('isLoggedIn');
+    setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
+    handleUserChange(null);
+  }
+
+  const handleIsCheckingInChange = () => {
+    setIsCheckingIn(true);
+    console.log(isCheckingIn)
   }
 
   function onSignUpClick () {
-    const signUp = document.getElementById('signup-form');
-    const login = document.getElementById('login-form');
-    signUp.removeAttribute('hidden');
-    login.setAttribute('hidden', true);
+    handleIsSigningUpChange(true);
   }
+
+  const handleUserChange = (data) => {
+    window.sessionStorage.setItem('user', JSON.stringify(data));
+    setUser(()=>JSON.parse(window.sessionStorage.getItem('user')));
+  }
+
+  const handleIsLoggedInChange = (boolean) => {
+    window.sessionStorage.setItem('isLoggedIn', boolean);
+    setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
+  }
+  
+  const handleIsSigningUpChange = (boolean) => {
+    setIsSigningUp(boolean);
+  }
+
+  ///// Helper functions /////
 
   function validate (data) {
     for (const property in data) {
@@ -124,15 +152,7 @@ function App() {
     }
 }
 
-const handleUserChange = (data) => {
-  window.sessionStorage.setItem('user', JSON.stringify(data));
-  setUser(()=>JSON.parse(window.sessionStorage.getItem('user')));
-}
 
-const handleIsLoggedInChange = (boolean) => {
-  window.sessionStorage.setItem('isLoggedIn', boolean);
-  setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
-}
 
 function handleInvalidInput (value) {
         const text = value.replace('_', ' ');
@@ -153,7 +173,7 @@ function handleInvalidInput (value) {
        {isLoggedIn && user ? 
         <ProfileBar 
           handleLogout={handleLogout} 
-          renderCheckIn={renderCheckIn} 
+          renderCheckIn={handleIsCheckingInChange} 
           handleCheckout={handleCheckout} 
           isCheckingIn={isCheckingIn}
           user={user}
@@ -172,15 +192,22 @@ function handleInvalidInput (value) {
           />:
           null
       }
-      {!isLoggedIn ? <div id="login-form"><Login handleLogin={handleLogin} onSignUpClick={onSignUpClick} /></div>:null}
-      <div id="signup-form" hidden>
+      {!isLoggedIn ? 
+        <div id="login-form">
+          <Login 
+            handleLogin={handleLogin} 
+            onSignUpClick={onSignUpClick} 
+            />
+        </div>
+        : null}
+      {isSigningUp && !isLoggedIn ? <div id="signup-form">
         <SignUp 
           validate={validate} 
           errors={errors} 
           setErrors={setErrors} 
           handleSignUp={handleSignUp}
           />
-      </div>
+      </div>:null}
         {isLoggedIn ? <SkateparksMapContainer skateparks={skateparks} isLoading={isMapLoading} />:null}
     </div> 
 

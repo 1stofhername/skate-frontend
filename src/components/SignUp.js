@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
 
-    const categories = ["skateboard", "scooter", "inline skates", "rollerskates", "other"]
+    // const categories = ["skateboard", "scooter", "inline skates", "rollerskates", "other"]
     const [firstName, setFirstName]=useState("");
     const [lastName, setLastName]=useState("");
     const [email, setEmail]=useState("");
@@ -11,16 +11,15 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
     function onSignUpFormSubmit (e) {
         e.preventDefault();
         const formData = { 
-            "first_name": firstName, 
-            "last_name": lastName, 
-            "email": email, 
-            "password": password,
-            "checkedIn": false
+            first_name: firstName, 
+            last_name: lastName, 
+            email: email, 
+            password: password
         };
         setErrors([]);
         validate(formData);
         if (errors.length === 0) {
-            console.log(formData)
+            handleSignUp(formData)
         }
     }
 
