@@ -31,8 +31,7 @@ function App() {
     fetch('http://localhost:9292/skateparks')
     .then((r)=>r.json())
     .then((data)=>setSkateparks(data))
-    // .then(setIsMapLoading(false))
-  },[]);
+  },[activeSkatepark]);
 
   // Login
   
