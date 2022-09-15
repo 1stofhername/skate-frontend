@@ -2,7 +2,7 @@ import SkateparkCard from "./SkateparkCard";
 import { useState } from 'react';
 
 export default function SkateparkMapContainer ({ skateparks }) {
-
+    console.log(skateparks)
     return(
     <div>
         {skateparks.length > 0 

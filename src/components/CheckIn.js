@@ -26,7 +26,7 @@ export default function CheckIn ({ userId, skateparkId, handleCheckIn }) {
             <p>Check In</p>
             <form onSubmit={onCheckInSubmit} className="form" id="check-in-form">
                 <select name="skate-park" onChange={handleSkateParkNameChange}>
-                    <option disabled selected>Choose a skatepark</option>
+                    <option>Choose a skatepark</option>
                     <option>Cal Anderson Improvised Skate Park</option>
                     <option>Delridge Skate Park</option>
                     <option>Jefferson Skate Park</option>
@@ -35,7 +35,7 @@ export default function CheckIn ({ userId, skateparkId, handleCheckIn }) {
                     <option>Lower Woodland Skate Park</option>
                 </select>
                 <select onChange={handleCategoryChange} name="What are you riding?">
-                    <option disabled selected>Choose a your ride</option>
+                    <option>Choose a your ride</option>
                     <option id="skateboard">Skateboard</option>
                     <option id="inlineskates">Inlineskates</option>
                     <option id="rollerskates">Rollerskates</option>

@@ -1,11 +1,11 @@
 import { Route, Routes, useNavigation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import ProfileBar from './components/ProfileBar';
-import Login from './components/Login';
-import CheckIn from './components/CheckIn';
-import SignUp from './components/SignUp';
-import SkateparksMapContainer from './components/SkateparksMapContainer';
-import './css/App.css';
+import ProfileBar from './ProfileBar';
+import Login from './Login';
+import CheckIn from './CheckIn';
+import SignUp from './SignUp';
+import SkateparksMapContainer from './SkateparksMapContainer';
+import '../css/App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(window.sessionStorage.getItem('isLoggedIn'));
