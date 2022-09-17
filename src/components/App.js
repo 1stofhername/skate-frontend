@@ -9,7 +9,6 @@ import '../css/App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(window.sessionStorage.getItem('isLoggedIn'));
-  // const [isMapLoading, setIsMapLoading]=useState(true);
   const [isLoggingIn, setIsLoggingIn] = useState(true);
   const [isCheckingIn, setIsCheckingIn] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
@@ -122,9 +121,15 @@ function App() {
     handleUserChange(null);
   }
 
+  function handleDelete () {
+    fetch(`http://localhost:9292/users/delete/${user.id}`, {
+      method: "DELETE"
+    })
+    .then(handleLogout)
+  }
+
   const handleIsCheckingInChange = () => {
     setIsCheckingIn(true);
-    console.log(isCheckingIn)
   }
 
   function onSignUpClick () {
@@ -138,7 +143,6 @@ function App() {
   }
 
   const handleIsLoggedInChange = (boolean) => {
-    console.log(boolean);
     window.sessionStorage.setItem('isLoggedIn', boolean);
     setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
   }
@@ -157,12 +161,10 @@ function App() {
     for (const property in data) {
         if(property !== 'email') {
             if(data[property]){
-            console.log('yes')
         } else {
             handleInvalidInput(property)
         } } else {
             if (data[property] && data[property].includes('@')){
-                console.log('yes')
             } else {
                 handleInvalidInput(property)
             }
@@ -191,6 +193,7 @@ function handleInvalidInput (value) {
        {isLoggedIn && user ? 
         <ProfileBar 
           handleLogout={handleLogout} 
+          handleDelete={handleDelete}
           renderCheckIn={handleIsCheckingInChange} 
           handleCheckout={handleCheckout} 
           isCheckingIn={isCheckingIn}

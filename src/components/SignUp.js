@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
 
-    // const categories = ["skateboard", "scooter", "inline skates", "rollerskates", "other"]
     const [firstName, setFirstName]=useState("");
     const [lastName, setLastName]=useState("");
     const [email, setEmail]=useState("");
@@ -23,48 +22,25 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
         }
     }
 
-    // function validate (data) {
-    //     for (const property in data) {
-    //         if(property !== 'email') {
-    //             if(data[property]){
-    //             console.log('yes')
-    //         } else {
-    //             handleInvalidInput(property)
-    //         } } else {
-    //             if (data[property] && data[property].includes('@')){
-    //                 console.log('yes')
-    //             } else {
-    //                 handleInvalidInput(property)
-    //             }
-    //         }
-    //     }
-    // }
-
-    // function handleInvalidInput (value) {
-    //         const text = value.replace('_', ' ');
-    //         errorArray.push(`Invalid ${text}`);
-    //         setErrors(errorArray)
-    //     }
-    
-
-    function handleFirstNameChange (e) {
-        setFirstName(e.target.value);
-        console.log(firstName);
-    }
-
-    function handleLastNameChange (e) {
-        setLastName(e.target.value);
-        console.log(lastName);
-    }
-
-    function handleEmailChange (e) {
-        setEmail(e.target.value);
-        console.log(email);
-    }
-
-    function handlePasswordChange (e) {
-        setPassword(e.target.value);
-    }
+    function handleFormChange (e) {
+        let name = e.target.name;
+        switch(name) {
+            case "first_name":
+                setFirstName(e.target.value);
+                console.log(firstName)
+                break;
+            case "last_name":
+                setLastName(e.target.value);
+                console.log(lastName)
+                break;
+            case "email":
+                setEmail(e.target.value);
+                console.log(email)
+            case "password":
+                setPassword(e.target.value)
+                break;
+        }
+    };
 
     return (
         <div className="popover" id="sign-up">
@@ -73,19 +49,19 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
                 <span className="user-info">
                     <label>
                         First Name:
-                        <input type="text" id="first_name" placeholder="Chaka" value={firstName} onChange={handleFirstNameChange} />
+                        <input type="text" name="first_name" id="first_name" placeholder="Chaka" value={firstName} onChange={handleFormChange} />
                     </label>
                     <label>
                         Last Name:
-                        <input type="text" id="last_name" placeholder="Zulu" value={lastName} onChange={handleLastNameChange} />
+                        <input type="text" name="last_name" id="last_name" placeholder="Zulu" value={lastName} onChange={handleFormChange} />
                     </label>
                     <label>
                         Email:
-                        <input type="text" id="email" placeholder="ChakaZulu@email.com" value={email} onChange={handleEmailChange} />
+                        <input type="text" name="email" id="email" placeholder="ChakaZulu@email.com" value={email} onChange={handleFormChange} />
                     </label>
                     <label>
                         Password:
-                        <input type="password" id="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+                        <input type="password" name="password" id="password" placeholder="Password" value={password} onChange={handleFormChange} />
                     </label>
                 </span>
                 {/* <span className="category-form">
@@ -94,6 +70,7 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
                 </span> */}
                 <button type="submit">Create</button>
             </form>
+            <p>Already have an account? Login.</p>
             {errors.length > 0 
               ? errors.map(error=><p className="error-message" key={error}>
                 {error}
