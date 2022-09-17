@@ -230,7 +230,7 @@ function handleInvalidInput (value) {
           handleSignUp={handleSignUp}
           />
       </div>:null}
-        {isLoggedIn ? <SkateparksMapContainer skateparks={skateparks} />:null}
+        {isLoggedIn ? <SkateparksMapContainer skateparks={skateparks} activeSkatepark={activeSkatepark} />:null}
     </div> 
 
   );

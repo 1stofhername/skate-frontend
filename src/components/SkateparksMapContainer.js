@@ -1,12 +1,12 @@
 import SkateparkCard from "./SkateparkCard";
-import ViewBar from "./ViewBar";
+import CategoryBar from "./CategoryBar";
 import { useState } from 'react';
 
-export default function SkateparkMapContainer ({ skateparks }) {
+export default function SkateparkMapContainer ({ skateparks, activeSkatepark }) {
     console.log(skateparks)
     return(
     <div>
-        <ViewBar />
+        <CategoryBar activeSkatepark={activeSkatepark} />
         <div className="skateparks-container">
         {skateparks.length > 0 
             ? skateparks.map((park)=>{

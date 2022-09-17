@@ -40,10 +40,13 @@ p.error-message {
   border-color: black;
   width:fit-content;
   border-radius: 5px;
+  padding:20px;
+  margin:20px;
 }
 
 .park-img {
-  width:20rem;
+  width:10rem;
+
 }
 
 .status {

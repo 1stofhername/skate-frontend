@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import '../css/skateparkcard.css';
 
 export default function SkateparkCard ({ skatepark }) {
