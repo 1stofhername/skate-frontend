@@ -27,15 +27,12 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
         switch(name) {
             case "first_name":
                 setFirstName(e.target.value);
-                console.log(firstName)
                 break;
             case "last_name":
                 setLastName(e.target.value);
-                console.log(lastName)
                 break;
             case "email":
                 setEmail(e.target.value);
-                console.log(email)
             case "password":
                 setPassword(e.target.value)
                 break;
