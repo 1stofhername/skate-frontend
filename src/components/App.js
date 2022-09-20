@@ -15,6 +15,7 @@ function App() {
   
   const [user, setUser] = useState(JSON.parse(window.sessionStorage.getItem('user')));
   const [skateparks, setSkateparks] = useState("");
+  const [categories, setCategories]=useState("");
   
   const [activeCategory, setActiveCategory]=useState("");
   const [activeSkatepark, setActiveSkatepark]=useState("");
@@ -27,10 +28,22 @@ function App() {
   ////// Server calls ///////
 
   useEffect(()=>{
+    fetchCategories();
+    fetchSkateparks();
+    
+  },[activeSkatepark]);
+
+  function fetchSkateparks () {
     fetch('http://localhost:9292/skateparks')
     .then((r)=>r.json())
     .then((data)=>setSkateparks(data))
-  },[activeSkatepark]);
+  };
+
+  function fetchCategories () {
+      fetch('http://localhost:9292/categories')
+      .then((r)=>r.json())
+      .then((data)=>setCategories(data))
+  };
 
   // Login
   
@@ -46,9 +59,6 @@ function App() {
             setLoginError(data);
           }
         })
-        // .then(data=>handleUserChange(data))
-        // .then(()=>window.sessionStorage.setItem('isLoggedIn', 'true'))
-        // .then(()=>setIsLoggedIn(window.sessionStorage.getItem('isLoggedIn')))
   };
 
   // Check in
@@ -70,7 +80,6 @@ function App() {
     .then(()=>setIsCheckingIn(false))
     .then(setActiveSkatepark(skatepark))
     .then(setActiveCategory(category))
-    .then(console.log(activeSkatepark))
   };
 
   // Check out
@@ -83,14 +92,14 @@ function App() {
       },
       body: JSON.stringify({
         "checkedIn": false,
-        "skatepark_id": null
+        "skatepark_id": null,
+        "category_id": null,
       }),
     })
     .then((r)=> r.json())
     .then(data=>handleUserChange(data))
     .then(setActiveSkatepark(""))
     .then(setActiveCategory(""))
-    .then(console.log(`active cat: ${activeCategory} activeP: ${activeSkatepark}`))
   }
 
   // Sign up
@@ -172,8 +181,6 @@ function App() {
     }
 }
 
-
-
 function handleInvalidInput (value) {
         const text = value.replace('_', ' ');
         errorArray.push(`Invalid ${text}`);
@@ -230,7 +237,7 @@ function handleInvalidInput (value) {
           handleSignUp={handleSignUp}
           />
       </div>:null}
-        {isLoggedIn ? <SkateparksMapContainer skateparks={skateparks} activeSkatepark={activeSkatepark} />:null}
+        {isLoggedIn ? <SkateparksMapContainer categories={categories} skateparks={skateparks} activeSkatepark={activeSkatepark} />:null}
     </div> 
 
   );

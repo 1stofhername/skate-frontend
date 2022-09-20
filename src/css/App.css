@@ -52,3 +52,11 @@ p.error-message {
 .status {
   color:red;
 }
+
+.category-list {
+  display: flex;
+}
+
+.icon {
+  width:30px;
+}

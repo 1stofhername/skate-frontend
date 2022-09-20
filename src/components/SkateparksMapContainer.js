@@ -2,11 +2,11 @@ import SkateparkCard from "./SkateparkCard";
 import CategoryBar from "./CategoryBar";
 import { useState } from 'react';
 
-export default function SkateparkMapContainer ({ skateparks, activeSkatepark }) {
-    console.log(skateparks)
+export default function SkateparkMapContainer ({ categories, skateparks, activeSkatepark }) {
+    
     return(
     <div>
-        <CategoryBar activeSkatepark={activeSkatepark} />
+        <CategoryBar categories={categories} activeSkatepark={activeSkatepark} />
         <div className="skateparks-container">
         {skateparks.length > 0 
             ? skateparks.map((park)=>{
