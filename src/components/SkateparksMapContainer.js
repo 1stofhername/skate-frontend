@@ -18,6 +18,4 @@ export default function SkateparkMapContainer ({ categories, skateparks, activeS
         </div>
     </div>
     )
-    // skateparks.map((skatepark)=><SkateparkCard key={skatepark.id} skatepark={skatepark} />)
-    
 }
