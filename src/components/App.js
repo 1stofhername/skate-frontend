@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ProfileBar from './ProfileBar';
 import Login from './Login';
@@ -200,19 +200,6 @@ function App() {
     setIsAddingSkatepark(false);
   };
 
-//   function handleSkateParkNameChange (e) {
-//     const checkInForm = document.getElementById("check-in-form");
-//     const skateparkCreateForm = document.getElementById('skatepark-create-form');
-
-//     if(e.target.value === "Someplace else not listed?"){
-//         checkInForm.hidden = true;
-//         skateparkCreateForm.hidden = false;
-//         formTitle.value="Add a skatepark"
-//     } else {
-//     setSkateparkName(e.target.value);
-//     console.log(skateparkName)}
-// }
-
   ///// Helper functions /////
 
   function validate (data) {
@@ -252,6 +239,7 @@ function handleInvalidInput (value) {
           handleDelete={handleDelete}
           renderCheckIn={handleIsCheckingInChange} 
           handleCheckout={handleCheckout} 
+          isAddingSkatepark={isAddingSkatepark}
           isCheckingIn={isCheckingIn}
           user={user}
           activeSkatepark={activeSkatepark}

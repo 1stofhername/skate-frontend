@@ -1,10 +1,5 @@
-import { useState } from 'react';
-import { CheckIn } from "./CheckIn";
+export default function ProfileBar ({ handleLogout, handleDelete, renderCheckIn, handleCheckout, user, isCheckingIn, isAddingSkatepark, activeSkatepark, activeCategory }) {
 
-export default function ProfileBar ({ handleLogout, handleDelete, renderCheckIn, handleCheckout, user, isCheckingIn, activeSkatepark, activeCategory }) {
-
-    console.log(`checkin: ${user.checkedIn}`)
-    console.log(`cat ${activeCategory}, park ${activeSkatepark}`)
     function onCheckout () {
         handleCheckout();
     }
@@ -18,7 +13,10 @@ export default function ProfileBar ({ handleLogout, handleDelete, renderCheckIn,
     }
 
     function onDeleteClick () {
-        handleDelete()
+        const deleteConfirm = window.confirm('Are you sure you want to delete your profile?');
+        if (deleteConfirm) {
+            handleDelete()
+        }
     }
 
     return (
@@ -28,7 +26,7 @@ export default function ProfileBar ({ handleLogout, handleDelete, renderCheckIn,
             <p>Hello, {user.first_name}!</p> 
                 {activeSkatepark?<p>Active at: {activeSkatepark} Riding: {activeCategory}</p>:null}
             </div> :null}
-            {!user.checkedIn && !isCheckingIn ? <button onClick={onCheckInClick}>CheckIn+</button>:null}
+            {!user.checkedIn && !isCheckingIn && !isAddingSkatepark ? <button onClick={onCheckInClick}>CheckIn+</button>:null}
             {user.checkedIn ?
                 <button onClick={onCheckout}>Leave</button>:null}
             <button onClick={onLogout}>Logout</button>
