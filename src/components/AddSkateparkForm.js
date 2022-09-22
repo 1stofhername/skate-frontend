@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function AddSkateparkForm ({ handleAddCancel }) {
+export default function AddSkateparkForm ({ handleAddCancel, handleSkateparkAddSubmit }) {
 
     const [formData, setFormData] = useState({
         "name": null,
@@ -18,10 +18,15 @@ export default function AddSkateparkForm ({ handleAddCancel }) {
         console.log(formData)
     }
 
+    function onSkateparkAddSubmit (e) {
+        e.preventDefault();
+        handleSkateparkAddSubmit(formData);
+    }
+
     return (
         <div className='form'>
             <p className='title'>Add a skatepark</p>
-            <form id="skatepark-create-form">
+            <form id="skatepark-add-form" onSubmit={onSkateparkAddSubmit}>
                 <label id="other-sp-input">
                     Name:
                     <input name="name" type="text" placeholder='Battle for the Block Skate Fest' onChange={onFormChange} />
@@ -34,7 +39,7 @@ export default function AddSkateparkForm ({ handleAddCancel }) {
                     Image link:
                     <input name="imglink" type="text" placeholder='https://image.jpeg' onChange={onFormChange} />
                 </label>
-                <label>Check in here?<input type="checkbox" /></label>
+                <label>Check in here?<input type="checkbox" name="checkin" onChange={(e)=>console.log(e.target.checked)}/></label>
                 <input type="submit" />
                 <button onClick={handleAddCancel}>Cancel</button>
             </form>

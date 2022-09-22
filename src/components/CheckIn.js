@@ -1,9 +1,7 @@
 import { useState } from 'react';
 
-export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, handleCheckInCancel, handleSkateparkAdd }) {
+export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, handleCheckInCancel, handleSkateparkNotListed }) {
 
-    // const [skateparkName, setSkateparkName]=useState("");
-    // const [category, setCategory] = useState("skateboard");
     const [formData, setFormData] = useState({
             "skatepark_name": null,
             "category_name": null,
@@ -14,7 +12,7 @@ export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, han
         const name = e.target.name;
         const value = e.target.value;
         if (value==="Skatepark not listed?") {
-            handleSkateparkAdd();
+            handleSkateparkNotListed();
         } else {
             setFormData({
                 ...formData,
@@ -22,23 +20,6 @@ export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, han
             });
         }
     }
-
-    // function handleSkateParkNameChange (e) {
-    //     const checkInForm = document.getElementById("check-in-form");
-    //     const skateparkCreateForm = document.getElementById('skatepark-create-form');
-
-    //     if(e.target.value === "Someplace else not listed?"){
-    //         checkInForm.hidden = true;
-    //         skateparkCreateForm.hidden = false;
-    //     } else {
-    //     setSkateparkName(e.target.value);
-    //     console.log(skateparkName)}
-    // }
-
-    // function handleCategoryChange (e) {
-    //     const value = (e.target.value).toLowerCase();
-    //     setCategory(value);
-    // }
 
     function onCheckInSubmit (e) {
         e.preventDefault();
@@ -49,17 +30,6 @@ export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, han
         e.preventDefault();
         handleCheckInCancel();
     }
-
-    // function handleAddCancel(e) {
-    //     const skateparkCreateForm = document.getElementById('skatepark-create-form');
-    //     const formTitle = document.getElementById('form-title');
-
-    //     e.preventDefault();
-    //     setSkateparkName("");
-    //     handleCheckInCancel();
-    //     skateparkCreateForm.hidden = true;
-    //     formTitle.value="Check In";
-    // }
 
     return (
         <div className="popover" id="check-in">

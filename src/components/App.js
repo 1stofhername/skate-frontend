@@ -107,14 +107,14 @@ function App() {
 
   // Sign up
 
-  function handleSignUp (data) {
+  function handleSignUp (formData) {
     fetch('http://localhost:9292/users/signup', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(
-        data
+        formData
         ),
     })
     .then((r)=>r.json())
@@ -122,7 +122,25 @@ function App() {
     .then(()=>{
       handleIsLoggedInChange(true)
     })
+  };
+
+  function handleSkateparkAddSubmit (formData) {
+    let newSkateparks = [];
+    fetch('http://localhost:9292/skateparks/create',{
+      method: "POST",
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      body: JSON.stringify(
+        formData
+      ),
+    })
+    .then((r)=>r.json())
+    .then((data)=>newSkateparks = [...skateparks, data])
+    .then(()=>setSkateparks(newSkateparks))
   }
+
+
 
   // State/attribute change handlers
 
@@ -131,18 +149,18 @@ function App() {
     window.sessionStorage.removeItem('isLoggedIn');
     setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
     handleUserChange(null);
-  }
+  };
 
   function handleDelete () {
     fetch(`http://localhost:9292/users/delete/${user.id}`, {
       method: "DELETE"
     })
     .then(handleLogout)
-  }
+  };
 
   const handleIsCheckingInChange = () => {
     setIsCheckingIn(true);
-  }
+  };
 
   function onSignUpClick () {
     handleIsSigningUpChange(true);
@@ -152,27 +170,35 @@ function App() {
   const handleUserChange = (data) => {
     window.sessionStorage.setItem('user', JSON.stringify(data));
     setUser(()=>JSON.parse(window.sessionStorage.getItem('user')));
-  }
+  };
 
   const handleIsLoggedInChange = (boolean) => {
     window.sessionStorage.setItem('isLoggedIn', boolean);
     setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
-  }
+  };
   
   const handleIsSigningUpChange = (boolean) => {
     setIsSigningUp(boolean);
-  }
+  };
 
   const toggleIsLoggingIn = ()=>{
     setIsLoggingIn(!isLoggingIn);
-  }
+  };
 
   ///// Skatepark form data handlers /////
 
-  function handleSkateparkAdd () {
+  function handleSkateparkNotListed () {
     setIsCheckingIn(false);
     setIsAddingSkatepark(true);
-  }
+  };
+
+  
+
+  function handleAddCancel (e){
+    e.preventDefault();
+    setIsCheckingIn(false);
+    setIsAddingSkatepark(false);
+  };
 
 //   function handleSkateParkNameChange (e) {
 //     const checkInForm = document.getElementById("check-in-form");
@@ -241,12 +267,15 @@ function handleInvalidInput (value) {
           categoryId={user.category_id}
           handleCheckInSubmit={handleCheckInSubmit}  
           handleCheckInCancel={handleCheckInCancel}
-          handleSkateparkAdd={handleSkateparkAdd}
+          handleSkateparkNotListed={handleSkateparkNotListed}
           />:
           null
       }
       {isLoggedIn && isAddingSkatepark ?
-      <AddSkateparkForm />:null
+      <AddSkateparkForm
+      handleSkateparkAddSubmit={handleSkateparkAddSubmit}
+      handleAddCancel={handleAddCancel}
+       />:null
       }
       {!isLoggedIn && isLoggingIn ? 
         <div id="login-form">
