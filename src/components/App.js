@@ -168,6 +168,21 @@ function App() {
     setIsLoggingIn(!isLoggingIn);
   }
 
+  ///// Skatepark form data handlers /////
+
+//   function handleSkateParkNameChange (e) {
+//     const checkInForm = document.getElementById("check-in-form");
+//     const skateparkCreateForm = document.getElementById('skatepark-create-form');
+
+//     if(e.target.value === "Someplace else not listed?"){
+//         checkInForm.hidden = true;
+//         skateparkCreateForm.hidden = false;
+//         formTitle.value="Add a skatepark"
+//     } else {
+//     setSkateparkName(e.target.value);
+//     console.log(skateparkName)}
+// }
+
   ///// Helper functions /////
 
   function validate (data) {

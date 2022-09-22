@@ -25,8 +25,7 @@ export default function CategoryBar ({ categories }) {
 
     return (
         <div className="category-list">
-        {categories? categories.map((cat)=><p key={cat.name}>{renderIcons(cat.name)} {cat.users.length} </p>):null}
-        {/* {categories ? icon():null} */}
+        {categories? categories.map((cat)=><div key={cat.name} className={cat.name}><p key={cat.name}>{renderIcons(cat.name)} {cat.users.length} </p></div>):null}
         </div>
     )
 }
