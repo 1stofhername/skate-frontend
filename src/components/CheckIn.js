@@ -10,7 +10,7 @@ export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, han
             "checkedIn": true
         });
 
-    function handleFormChange (e) {
+    function onFormChange (e) {
         const name = e.target.name;
         const value = e.target.value;
         if (value==="Skatepark not listed?") {
@@ -65,7 +65,7 @@ export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, han
         <div className="popover" id="check-in">
             <p className="title" id="check-in-form-title">Check In</p>
             <form onSubmit={onCheckInSubmit} className="form" id="check-in-form">
-                <select id="skatepark-drop-down" name="skatepark_name" onChange={handleFormChange}>
+                <select id="skatepark-drop-down" name="skatepark_name" onChange={onFormChange}>
                     <option>Choose a skatepark</option>
                     <option>Cal Anderson Improvised Skate Park</option>
                     <option>Delridge Skate Park</option>
@@ -75,7 +75,7 @@ export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, han
                     <option>Lower Woodland Skate Park</option>
                     <option id="other-sp">Skatepark not listed?</option>
                 </select>
-                <select onChange={handleFormChange} name="category_name">
+                <select onChange={onFormChange} name="category_name">
                     <option>Choose a your ride</option>
                     <option id="skateboard">skateboard</option>
                     <option id="inlineskates">inlineskates</option>
