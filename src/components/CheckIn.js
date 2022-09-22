@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function CheckIn ({ userId, skateparkId, handleCheckIn }) {
+export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, handleCheckInCancel }) {
 
     const [skateparkName, setSkateparkName]=useState("");
     const [category, setCategory] = useState("skateboard");
@@ -18,7 +18,12 @@ export default function CheckIn ({ userId, skateparkId, handleCheckIn }) {
 
     function onCheckInSubmit (e) {
         e.preventDefault();
-        handleCheckIn(skateparkName, category);
+        handleCheckInSubmit(skateparkName, category);
+    }
+
+    function onCheckInCancel (e) {
+        e.preventDefault();
+        handleCheckInCancel();
     }
 
     return (
@@ -44,6 +49,7 @@ export default function CheckIn ({ userId, skateparkId, handleCheckIn }) {
                     <option id="other">Other</option>
                 </select>
                 <input type="submit" />
+                <button onClick={onCheckInCancel}>Cancel</button>
             </form>
         </div>
     )

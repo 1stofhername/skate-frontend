@@ -63,7 +63,7 @@ function App() {
 
   // Check in
 
-  function handleCheckIn (skatepark, category) {
+  function handleCheckInSubmit (skatepark, category) {
     fetch(`http://localhost:9292/users/checkin/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -81,6 +81,10 @@ function App() {
     .then(setActiveSkatepark(skatepark))
     .then(setActiveCategory(category))
   };
+
+  function handleCheckInCancel () {
+    setIsCheckingIn(false);
+  }
 
   // Check out
 
@@ -216,7 +220,8 @@ function handleInvalidInput (value) {
           userId={user.id} 
           skateparkId={user.skatepark_id} 
           categoryId={user.category_id}
-          handleCheckIn={handleCheckIn}  
+          handleCheckInSubmit={handleCheckInSubmit}  
+          handleCheckInCancel={handleCheckInCancel}
           />:
           null
       }
