@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ProfileBar from './ProfileBar';
 import Login from './Login';
 import CheckIn from './CheckIn';
+import AddSkateparkForm from './AddSkateparkForm';
 import SignUp from './SignUp';
 import SkateparksMapContainer from './SkateparksMapContainer';
 import '../css/App.css';
@@ -12,6 +13,7 @@ function App() {
   const [isLoggingIn, setIsLoggingIn] = useState(true);
   const [isCheckingIn, setIsCheckingIn] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
+  const [isAddingSkatepark, setIsAddingSkatepark] = useState(false);
   
   const [user, setUser] = useState(JSON.parse(window.sessionStorage.getItem('user')));
   const [skateparks, setSkateparks] = useState("");
@@ -63,23 +65,19 @@ function App() {
 
   // Check in
 
-  function handleCheckInSubmit (skatepark, category) {
+  function handleCheckInSubmit (formData) {
     fetch(`http://localhost:9292/users/checkin/${user.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        "checkedIn": true,
-        "skatepark_name": skatepark,
-        "category_name": category
-      }),
+      body: JSON.stringify(formData),
     })
     .then((r)=> r.json())
     .then(data=>handleUserChange(data))
     .then(()=>setIsCheckingIn(false))
-    .then(setActiveSkatepark(skatepark))
-    .then(setActiveCategory(category))
+    .then(setActiveSkatepark(formData.skatepark_name))
+    .then(setActiveCategory(formData.category_name))
   };
 
   function handleCheckInCancel () {
@@ -170,6 +168,11 @@ function App() {
 
   ///// Skatepark form data handlers /////
 
+  function handleSkateparkAdd () {
+    setIsCheckingIn(false);
+    setIsAddingSkatepark(true);
+  }
+
 //   function handleSkateParkNameChange (e) {
 //     const checkInForm = document.getElementById("check-in-form");
 //     const skateparkCreateForm = document.getElementById('skatepark-create-form');
@@ -237,8 +240,12 @@ function handleInvalidInput (value) {
           categoryId={user.category_id}
           handleCheckInSubmit={handleCheckInSubmit}  
           handleCheckInCancel={handleCheckInCancel}
+          handleSkateparkAdd={handleSkateparkAdd}
           />:
           null
+      }
+      {isLoggedIn && isAddingSkatepark ?
+      <AddSkateparkForm />:null
       }
       {!isLoggedIn && isLoggingIn ? 
         <div id="login-form">
