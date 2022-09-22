@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
+export default function SignUp ({ validate, errors, setErrors, handleSignUp, handleSignUpCancel }){
 
     const [firstName, setFirstName]=useState("");
     const [lastName, setLastName]=useState("");
@@ -39,6 +39,12 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
         }
     };
 
+    function onCancelClick (e){
+        e.preventDefault();
+        handleSignUpCancel();
+
+    }
+
     return (
         <div className="popover" id="sign-up">
             <h2>Sign Up</h2>
@@ -66,6 +72,7 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp }){
                     </select>
                 </span> */}
                 <button type="submit">Create</button>
+                <button onClick={onCancelClick}>Cancel</button>
             </form>
             <p>Already have an account? Login.</p>
             {errors.length > 0 

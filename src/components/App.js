@@ -124,23 +124,10 @@ function App() {
     })
   };
 
-  function handleSkateparkAddSubmit (formData) {
-    let newSkateparks = [];
-    fetch('http://localhost:9292/skateparks/create',{
-      method: "POST",
-      headers: {
-        "Content-Type" : "application/json",
-      },
-      body: JSON.stringify(
-        formData
-      ),
-    })
-    .then((r)=>r.json())
-    .then((data)=>newSkateparks = [...skateparks, data])
-    .then(()=>setSkateparks(newSkateparks))
+  function handleSignUpCancel () {
+    setIsSigningUp(false);
+    setIsLoggingIn(true);
   }
-
-
 
   // State/attribute change handlers
 
@@ -185,20 +172,34 @@ function App() {
     setIsLoggingIn(!isLoggingIn);
   };
 
-  ///// Skatepark form data handlers /////
+  ///// Add Skatepark /////
 
   function handleSkateparkNotListed () {
     setIsCheckingIn(false);
     setIsAddingSkatepark(true);
   };
 
-  
-
   function handleAddCancel (e){
     e.preventDefault();
     setIsCheckingIn(false);
     setIsAddingSkatepark(false);
   };
+
+  function handleSkateparkAddSubmit (formData) {
+    let newSkateparks = [];
+    fetch('http://localhost:9292/skateparks/create',{
+      method: "POST",
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      body: JSON.stringify(
+        formData
+      ),
+    })
+    .then((r)=>r.json())
+    .then((data)=>newSkateparks = [...skateparks, data])
+    .then(()=>setSkateparks(newSkateparks))
+  }
 
   ///// Helper functions /////
 
@@ -280,6 +281,7 @@ function handleInvalidInput (value) {
           errors={signupErrors} 
           setErrors={setSignupErrors} 
           handleSignUp={handleSignUp}
+          handleSignUpCancel={handleSignUpCancel}
           />
       </div>:null}
         {isLoggedIn ? <SkateparksMapContainer categories={categories} skateparks={skateparks} activeSkatepark={activeSkatepark} />:null}
