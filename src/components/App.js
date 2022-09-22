@@ -66,6 +66,7 @@ function App() {
   // Check in
 
   function handleCheckInSubmit (formData) {
+    console.log(JSON.stringify(formData));
     fetch(`http://localhost:9292/users/checkin/${user.id}`, {
       method: "PATCH",
       headers: {

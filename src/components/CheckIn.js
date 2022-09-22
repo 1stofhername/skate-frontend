@@ -77,12 +77,12 @@ export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, han
                 </select>
                 <select onChange={handleFormChange} name="category_name">
                     <option>Choose a your ride</option>
-                    <option id="skateboard">Skateboard</option>
-                    <option id="inlineskates">Inlineskates</option>
-                    <option id="rollerskates">Rollerskates</option>
-                    <option id="scooter">Scooter</option>
-                    <option id="bike">Bike</option>
-                    <option id="other">Other</option>
+                    <option id="skateboard">skateboard</option>
+                    <option id="inlineskates">inlineskates</option>
+                    <option id="rollerskates">rollerskates</option>
+                    <option id="scooter">scooter</option>
+                    <option id="bike">bike</option>
+                    <option id="other">other</option>
                 </select>
                 <input type="submit" />
                 <button onClick={onCheckInCancel}>Cancel</button>
