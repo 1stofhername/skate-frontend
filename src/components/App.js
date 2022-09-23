@@ -57,6 +57,7 @@ function App() {
           if(data.id) {
             handleUserChange(data);
             handleIsLoggedInChange(true);
+            setLoginError("");
           } else {
             setLoginError(data);
           }
