@@ -120,7 +120,9 @@ function App() {
     .then((r)=>r.json())
     .then((data)=>handleUserChange(data))
     .then(()=>{
-      handleIsLoggedInChange(true)
+      handleIsLoggedInChange(true);
+      setIsSigningUp(false);
+      setIsLoggingIn(true);
     })
   };
 

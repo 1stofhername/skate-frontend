@@ -1,20 +1,16 @@
 import { useState } from 'react';
 
-export default function SignUp ({ validate, errors, setErrors, handleSignUp, handleSignUpCancel }){
+export default function SignUp ({ validate, errors, setErrors, handleSignUp, handleSignUpCancel }) {
 
-    const [firstName, setFirstName]=useState("");
-    const [lastName, setLastName]=useState("");
-    const [email, setEmail]=useState("");
-    const [password, setPassword]=useState("");
+    const [formData, setFormData] = useState({
+        first_name:null,
+        last_name:null,
+        email:null,
+        password:null
+    })
 
     function onSignUpFormSubmit (e) {
         e.preventDefault();
-        const formData = { 
-            first_name: firstName, 
-            last_name: lastName, 
-            email: email, 
-            password: password
-        };
         setErrors([]);
         validate(formData);
         if (errors.length === 0) {
@@ -24,25 +20,14 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
 
     function handleFormChange (e) {
         let name = e.target.name;
-        switch(name) {
-            case "first_name":
-                setFirstName(e.target.value);
-                break;
-            case "last_name":
-                setLastName(e.target.value);
-                break;
-            case "email":
-                setEmail(e.target.value);
-            case "password":
-                setPassword(e.target.value)
-                break;
-        }
+        let value = e.target.value;
+        setFormData({...formData, [name]:value})
+        console.log(formData)
     };
 
     function onCancelClick (e){
         e.preventDefault();
         handleSignUpCancel();
-
     }
 
     return (
@@ -52,25 +37,21 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
                 <span className="user-info">
                     <label>
                         First Name:
-                        <input type="text" name="first_name" id="first_name" placeholder="Chaka" value={firstName} onChange={handleFormChange} />
+                        <input type="text" name="first_name" id="first_name" placeholder="Chaka" value={formData.first_name} onChange={handleFormChange} />
                     </label>
                     <label>
                         Last Name:
-                        <input type="text" name="last_name" id="last_name" placeholder="Zulu" value={lastName} onChange={handleFormChange} />
+                        <input type="text" name="last_name" id="last_name" placeholder="Zulu" value={formData.last_name} onChange={handleFormChange} />
                     </label>
                     <label>
                         Email:
-                        <input type="text" name="email" id="email" placeholder="ChakaZulu@email.com" value={email} onChange={handleFormChange} />
+                        <input type="text" name="email" id="email" placeholder="ChakaZulu@email.com" value={formData.email} onChange={handleFormChange} />
                     </label>
                     <label>
                         Password:
-                        <input type="password" name="password" id="password" placeholder="Password" value={password} onChange={handleFormChange} />
+                        <input type="password" name="password" id="password" placeholder="Password" value={formData.password} onChange={handleFormChange} />
                     </label>
                 </span>
-                {/* <span className="category-form">
-                    <select>{categories.map(option=>(<option key={option} id={option} value={category} name="category" onChange={handleCategoryChange}>{option}</option>))}
-                    </select>
-                </span> */}
                 <button type="submit">Create</button>
                 <button onClick={onCancelClick}>Cancel</button>
             </form>
