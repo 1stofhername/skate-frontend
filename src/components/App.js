@@ -82,9 +82,9 @@ function App() {
     .then(setActiveCategory(formData.category_name))
   };
 
-  function handleCheckInCancel () {
-    setIsCheckingIn(false);
-  }
+  const toggleIsCheckingIn = () => {
+    setIsCheckingIn(!isCheckingIn);
+  };
 
   // Check out
 
@@ -148,10 +148,6 @@ function App() {
     .then(handleLogout)
   };
 
-  const handleIsCheckingInChange = () => {
-    setIsCheckingIn(true);
-  };
-
   function onSignUpClick () {
     handleIsSigningUpChange(true);
     toggleIsLoggingIn();
@@ -202,6 +198,7 @@ function App() {
     .then((r)=>r.json())
     .then((data)=>newSkateparks = [...skateparks, data])
     .then(()=>setSkateparks(newSkateparks))
+    .then()
   }
 
   ///// Helper functions /////
@@ -241,7 +238,7 @@ function handleInvalidInput (value) {
         <ProfileBar 
           handleLogout={handleLogout} 
           handleDelete={handleDelete}
-          renderCheckIn={handleIsCheckingInChange} 
+          renderCheckIn={toggleIsCheckingIn} 
           handleCheckout={handleCheckout} 
           isAddingSkatepark={isAddingSkatepark}
           isCheckingIn={isCheckingIn}
@@ -258,8 +255,9 @@ function handleInvalidInput (value) {
           skateparkId={user.skatepark_id} 
           categoryId={user.category_id}
           handleCheckInSubmit={handleCheckInSubmit}  
-          handleCheckInCancel={handleCheckInCancel}
+          handleCheckInCancel={toggleIsCheckingIn}
           handleSkateparkNotListed={handleSkateparkNotListed}
+          isCheckingIn={isCheckingIn}
           />:
           null
       }

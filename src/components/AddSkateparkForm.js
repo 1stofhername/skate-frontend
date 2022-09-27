@@ -15,7 +15,6 @@ export default function AddSkateparkForm ({ handleAddCancel, handleSkateparkAddS
             ...formData,
             [name]:value
         })
-        console.log(formData)
     }
 
     function onSkateparkAddSubmit (e) {
@@ -39,7 +38,6 @@ export default function AddSkateparkForm ({ handleAddCancel, handleSkateparkAddS
                     Image link:
                     <input name="imglink" type="text" placeholder='https://image.jpeg' onChange={onFormChange} />
                 </label>
-                <label>Check in here?<input type="checkbox" name="checkin" onChange={(e)=>console.log(e.target.checked)}/></label>
                 <input type="submit" />
                 <button onClick={handleAddCancel}>Cancel</button>
             </form>

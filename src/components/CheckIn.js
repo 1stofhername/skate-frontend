@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, handleCheckInCancel, handleSkateparkNotListed }) {
+export default function CheckIn ({ isCheckingIn, handleCheckInSubmit, handleCheckInCancel, handleSkateparkNotListed }) {
 
     const [formData, setFormData] = useState({
             "skatepark_name": null,
@@ -28,7 +28,9 @@ export default function CheckIn ({ userId, skateparkId, handleCheckInSubmit, han
 
     function onCheckInCancel (e) {
         e.preventDefault();
-        handleCheckInCancel();
+        if(isCheckingIn){
+            handleCheckInCancel(e);
+        };
     }
 
     return (

@@ -5,7 +5,9 @@ export default function ProfileBar ({ handleLogout, handleDelete, renderCheckIn,
     }
 
     function onCheckInClick (e) {
-        renderCheckIn(e)
+        if(!isCheckingIn) {
+            renderCheckIn(e)
+        }
     }
 
     function onLogout (e) {
