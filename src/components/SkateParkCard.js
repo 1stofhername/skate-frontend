@@ -16,13 +16,13 @@ export default function SkateparkCard ({ skatepark }) {
     
     
     return(
-        <div className="card">
+        <div className="card" id={`${skatepark.name}`.toLowerCase().split(' ').join('-')}>
                 {/* <div className='park-img-div'>
                     <img src={imglink} className="park-img" alt={`${skatepark.id}-img`} />
                 </div> */}
             <div className="skatepark-text-container">
                 <div className='park-details-container'>
-                    <p className='skatepark_name'>{name}</p>
+                    <p className='skatepark-name'>{name}</p>
                     <p>{location}</p>
                 </div>
             

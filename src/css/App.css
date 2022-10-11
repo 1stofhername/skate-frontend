@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+p {
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -9,6 +14,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+body {
+  overflow-y: hidden;
 }
 
 .bar {
@@ -31,32 +40,70 @@ p.error-message {
 }
 
 .skateparks-container {
-  display: flex;
+  /* display: flex; */
   flex-wrap: wrap;
-  width:100rem;
-  height: 70vh;
+  height: 650px;
+  width:1200px;
+  margin-top: -30px;
+  margin-bottom: -10px;
+  margin-left: auto;
+  margin-right: auto;
+  /* position: fixed; */
   overflow-x:hidden;
   background-image: url('../icons/skateparks_map.svg');
   background-repeat: no-repeat;
   background-size:contain;
 }
 
-
-
 .card {
   display:flex;
-  border-style:solid;
-  border-width: .5px;
-  border-color: black;
-  width:20rem;
-  height:2rem;
-  border-radius: 5px;
-  padding:5px;
-  
+  width:18rem;
+  height:1.5rem;
+  border-radius: 20px;
+  padding:3px;
   margin:20px;
   overflow-y: hidden;
   color: black;
   background-color:white;
+  position:relative;
+  border-style: solid;
+  border-width: 5px;
+}
+
+#lower-woodland-skate-park {
+  left: 700px;
+  bottom: 220px;
+}
+
+#judkins-skate-park {
+  left: 800px;
+  top:335px;
+}
+
+#jefferson-skate-park {
+  left:815px;
+  top:275px;
+}
+
+#delridge-skate-park {
+  top:460px;
+  left:270px;
+}
+
+#cal-anderson-improvised-skate-park {
+  left: 769px;
+  top: 305px;
+}
+
+#seattle-center-skate-plaza-\(seask8\){
+  top: 45px;
+  left:330px;
+}
+
+
+
+.card[expanded] {
+  height:8rem;
 }
 
 .skatepark-info-container{
@@ -76,6 +123,10 @@ p.error-message {
   /* width:10rem; */
   height: 150px;
 
+}
+
+.skatepark-name {
+  margin:5px;
 }
 
 .status {
