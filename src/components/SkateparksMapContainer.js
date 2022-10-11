@@ -5,7 +5,7 @@ import { useState } from 'react';
 export default function SkateparkMapContainer ({ categories, skateparks, activeSkatepark }) {
     
     return(
-    <div>
+    <div className="skateparks-map-div">
         <CategoryBar categories={categories} activeSkatepark={activeSkatepark} />
         <div className="skateparks-container">
         {skateparks.length > 0 

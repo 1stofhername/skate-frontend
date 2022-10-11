@@ -32,20 +32,49 @@ p.error-message {
 
 .skateparks-container {
   display: flex;
+  flex-wrap: wrap;
+  width:100rem;
+  height: 70vh;
+  overflow-x:hidden;
+  background-image: url('../icons/skateparks_map.svg');
+  background-repeat: no-repeat;
+  background-size:contain;
 }
 
+
+
 .card {
+  display:flex;
   border-style:solid;
   border-width: .5px;
   border-color: black;
-  width:fit-content;
+  width:20rem;
+  height:2rem;
   border-radius: 5px;
-  padding:20px;
+  padding:5px;
+  
   margin:20px;
+  overflow-y: hidden;
+  color: black;
+  background-color:white;
+}
+
+.skatepark-info-container{
+  display:flex;
+}
+
+.park-img-div {
+  width:150px;
+  height:150px;
+  overflow:hidden;
+  border-radius:75px;
+  display:flex;
+  justify-content: center;
 }
 
 .park-img {
-  width:10rem;
+  /* width:10rem; */
+  height: 150px;
 
 }
 
