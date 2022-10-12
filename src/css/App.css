@@ -17,7 +17,7 @@ p {
 }
 
 body {
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .bar {
@@ -49,6 +49,7 @@ p.error-message {
 
 .skateparks-container {
   /* display: flex; */
+  position:fixed;
   flex-wrap: wrap;
   height: 650px;
   width:1200px;
@@ -95,8 +96,8 @@ p.error-message {
 }
 
 #delridge-skate-park {
-  top:460px;
-  left:270px;
+  top:625px;
+  left:320px;
 }
 
 #cal-anderson-improvised-skate-park {
@@ -164,6 +165,7 @@ p.error-message {
 .category-list {
   display: flex;
   width:50%;
+  height:50px;
   justify-content: space-around;
   padding-left: 20px
 }
