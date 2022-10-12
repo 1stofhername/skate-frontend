@@ -17,7 +17,7 @@ p {
 }
 
 body {
-  overflow: hidden;
+  position:fixed;
 }
 
 .bar {
@@ -82,32 +82,32 @@ p.error-message {
 
 #lower-woodland-skate-park {
   left: 720px;
-  bottom: 100px;
+  top: 195px;
 }
 
 #judkins-skate-park {
-  left: 820px;
-  top:410px;
+  left: 810px;
+  top:620px;
 }
 
 #jefferson-skate-park {
-  left:815px;
-  top:275px;
+  left:485px;
+  top:505px;
 }
 
 #delridge-skate-park {
-  top:625px;
-  left:320px;
+  bottom:40px;
+  left:290px;
 }
 
 #cal-anderson-improvised-skate-park {
-  left: 769px;
-  top: 305px;
+  left: 780px;
+  top: 415px;
 }
 
 #seattle-center-skate-plaza-\(seask8\){
-  top: 45px;
-  left:330px;
+  top: 395px;
+  left:355px;
 }
 
 .card[expanded] {
@@ -167,9 +167,19 @@ p.error-message {
   width:50%;
   height:50px;
   justify-content: space-around;
-  padding-left: 20px
+  padding-left: 20px;
+  padding-left:20px;
 }
 
 .icon {
   height:30px;
+  margin-right:10px;
+}
+
+.category-info-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  margin-left:20px;
 }
