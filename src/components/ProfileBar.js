@@ -24,7 +24,7 @@ export default function ProfileBar ({ handleLogout, handleDelete, renderCheckIn,
     return (
         <div className="bar" id="profile-bar">
             { user ?
-            <div>
+            <div id="user-details">
             <p>Hello, {user.first_name}!</p> 
                 {activeSkatepark?<p>Active at: {activeSkatepark} Riding: {activeCategory}</p>:null}
             </div> :null}
