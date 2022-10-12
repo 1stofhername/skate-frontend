@@ -24,9 +24,15 @@ body {
   display:flex;
   flex-direction: row;
   height: 10vh;
-  width:100%;
-  background-color: #282c34;
+  /* width:100%; */
+  background-color: black;
   color:white;
+  width:1200px;
+}
+
+button {
+  height: 40px;
+  margin: auto 20px auto 20px
 }
 
 input[invalid] {
@@ -57,11 +63,10 @@ p.error-message {
 
 .card {
   display:flex;
-  width:18rem;
+  width: 300px;
   height:1.5rem;
   border-radius: 20px;
   padding:3px;
-  margin:20px;
   overflow-y: hidden;
   color: black;
   background-color:white;
@@ -71,13 +76,13 @@ p.error-message {
 }
 
 #lower-woodland-skate-park {
-  left: 700px;
-  bottom: 220px;
+  left: 720px;
+  bottom: 100px;
 }
 
 #judkins-skate-park {
-  left: 800px;
-  top:335px;
+  left: 820px;
+  top:410px;
 }
 
 #jefferson-skate-park {
@@ -100,7 +105,9 @@ p.error-message {
   left:330px;
 }
 
-
+.park-details-container {
+  display:flex;
+}
 
 .card[expanded] {
   height:8rem;
@@ -135,6 +142,8 @@ p.error-message {
 
 .category-list {
   display: flex;
+  width:50%;
+  justify-content: space-around;
 }
 
 .icon {

@@ -12,18 +12,27 @@ export default function SkateparkCard ({ skatepark }) {
             return "No one is checked in at this park"
         }
     }
+    
+    const skatepark_id = `${skatepark.name}`.toLowerCase().split(' ').join('-');
 
+    function handleCardClick (e) {
+        const id = e.target.id;
+        console.log(e.target.id)
+    }
     
-    
+    function handleCardExit (e) {
+        console.log('out')
+    }
     return(
-        <div className="card" id={`${skatepark.name}`.toLowerCase().split(' ').join('-')}>
+        <div className="card" id={skatepark_id} onClick={handleCardClick}>
                 {/* <div className='park-img-div'>
                     <img src={imglink} className="park-img" alt={`${skatepark.id}-img`} />
                 </div> */}
             <div className="skatepark-text-container">
                 <div className='park-details-container'>
+                    <p>+</p>
                     <p className='skatepark-name'>{name}</p>
-                    <p>{location}</p>
+                    {/* <p>{location}</p> */}
                 </div>
             
             <div className='active-riders-container'>
