@@ -29,17 +29,16 @@ export default function SkateparkCard ({ skatepark }) {
                     <img src={imglink} className="park-img" alt={`${skatepark.id}-img`} />
                 </div> */}
             <div className="skatepark-text-container">
+                <p className='plus-icon'>+</p>
                 <div className='park-details-container'>
-                    <p>+</p>
                     <p className='skatepark-name'>{name}</p>
                     {/* <p>{location}</p> */}
                 </div>
-            
+            </div>
             <div className='active-riders-container'>
                 <p id="rider-count" className="status">{renderText(users.length)}</p>
                 {users.length ? users.map(user=><div key={`${skatepark.id}_${user.id}`}><p key={`skatepark_p_${skatepark.id}`}>{user.first_name}</p></div>)
                     : null}
-            </div>
             </div>
         </div>
     )
