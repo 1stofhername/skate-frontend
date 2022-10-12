@@ -6,7 +6,9 @@ export default function SkateparkMapContainer ({ categories, skateparks, activeS
     
     return(
     <div className="skateparks-map-div">
-        <CategoryBar categories={categories} activeSkatepark={activeSkatepark} />
+        <div className="category-bar">
+            <CategoryBar categories={categories} activeSkatepark={activeSkatepark} />
+        </div>
         <div className="skateparks-container">
         {skateparks.length > 0 
             ? skateparks.map((park)=>{
