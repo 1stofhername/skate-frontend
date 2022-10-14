@@ -32,7 +32,6 @@ function App() {
   useEffect(()=>{
     fetchCategories();
     fetchSkateparks();
-    
   },[activeSkatepark]);
 
   function fetchSkateparks () {
@@ -258,6 +257,7 @@ function handleInvalidInput (value) {
           handleCheckInCancel={toggleIsCheckingIn}
           handleSkateparkNotListed={handleSkateparkNotListed}
           isCheckingIn={isCheckingIn}
+          fetchCategories={fetchCategories}
           />:
           null
       }

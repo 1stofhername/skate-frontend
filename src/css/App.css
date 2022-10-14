@@ -23,7 +23,7 @@ body {
 .bar {
   display:flex;
   flex-direction: row;
-  height: 10vh;
+  height: 75px;
   align-items: center;
   padding-left: 20px;
   background-color: black;
@@ -64,6 +64,11 @@ p.error-message {
   background-size:contain;
 }
 
+.buttons-container {
+  display:flex;
+  flex-wrap: nowrap;
+}
+
 #user-details {
   width:600px;
   display: flex;
@@ -93,6 +98,7 @@ p.error-message {
   position:fixed;
   border-style: solid;
   border-width: 5px;
+  transition-duration: .2s;
 }
 
 #lower-woodland-skate-park {
@@ -102,7 +108,7 @@ p.error-message {
 
 #judkins-skate-park {
   left: 810px;
-  top:620px;
+  bottom:10px;
 }
 
 #jefferson-skate-park {
@@ -117,16 +123,17 @@ p.error-message {
 
 #cal-anderson-improvised-skate-park {
   left: 780px;
-  top: 415px;
+  bottom: 220px;
 }
 
 #seattle-center-skate-plaza-\(seask8\){
-  top: 395px;
+  bottom: 235px;
   left:355px;
 }
 
 .card[expanded] {
   height:8rem;
+  transition-duration: .2s;
 }
 
 .skatepark-text-container {
@@ -141,6 +148,7 @@ p.error-message {
   border-radius: 50%;
   display:flex;
   align-content: center;
+  justify-self: flex-end;
 }
 
 .plus-icon {
@@ -156,11 +164,14 @@ p.error-message {
 
 .park-details-container {
   display:flex;
-  width:fit-content;
+  width:320px;
+  padding-right:5px;
+  padding-left:5px;
+  flex-wrap: nowrap;
   margin-left: auto;
   margin-right: auto;
   align-items: center;
-  
+  justify-content: space-between;
 }
 
 .skatepark-info-container{
@@ -179,11 +190,6 @@ p.error-message {
 .park-img {
   /* width:10rem; */
   height: 150px;
-
-}
-
-.skatepark-name {
-  margin:5px;
 }
 
 .status {
