@@ -13,25 +13,38 @@ export default function SkateparkCard ({ skatepark }) {
         }
     }
     
-    const skatepark_id = `${skatepark.name}`.toLowerCase().split(' ').join('-');
+    const skateparkId = `${skatepark.name}`.toLowerCase().split(' ').join('-');
 
-    function handleCardClick (e) {
-        const id = e.target.id;
-        console.log(e.target.id)
+    function handleExpandClick (e) {
+        const id = e.target.id.split('_')[0];
+        const cards = document.getElementsByClassName('card');
+        for(let element of cards) {
+            const expanded = element.getAttribute('expanded');
+            if (element.id === id){
+                if (!expanded){
+                    element.setAttribute('expanded', true);
+                } else {
+                    element.removeAttribute('expanded');
+                }
+            } else {
+                element.removeAttribute('expanded');
+            }
+        }
     }
-    
-    function handleCardExit (e) {
-        console.log('out')
-    }
+
     return(
-        <div className="card" id={skatepark_id} onClick={handleCardClick}>
+        <div className="card" id={skateparkId}>
                 {/* <div className='park-img-div'>
                     <img src={imglink} className="park-img" alt={`${skatepark.id}-img`} />
                 </div> */}
             <div className="skatepark-text-container">
-                <p className='plus-icon'>+</p>
                 <div className='park-details-container'>
-                    <p className='skatepark-name'>{name}</p>
+                    <div className='skatepark-name-div'>
+                        <p className='skatepark-name'>{name}</p>
+                    </div>
+                    <div onClick={handleExpandClick} className='plus-icon-div'>
+                        <p id={`${skateparkId}_expand`} className='plus-icon'>+</p>
+                    </div>
                     {/* <p>{location}</p> */}
                 </div>
             </div>

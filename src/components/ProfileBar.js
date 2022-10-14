@@ -25,8 +25,8 @@ export default function ProfileBar ({ handleLogout, handleDelete, renderCheckIn,
         <div className="bar" id="profile-bar">
             { user ?
             <div id="user-details">
-            <p>Hello, {user.first_name}!</p> 
-                {activeSkatepark?<p>Active at: {activeSkatepark} Riding: {activeCategory}</p>:null}
+            <p className="greeting">Hello, {user.first_name}!</p> 
+                {activeSkatepark?<p className="active-info">Active at: {activeSkatepark} Riding: {activeCategory}</p>:null}
             </div> :null}
             <div className="buttons-container">
                 {!user.checkedIn && !isCheckingIn && !isAddingSkatepark ? <button onClick={onCheckInClick}>CheckIn+</button>:null}

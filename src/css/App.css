@@ -64,8 +64,19 @@ p.error-message {
   background-size:contain;
 }
 
-.user-details {
-  width:700px;
+#user-details {
+  width:600px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.greeting {
+  width:fit-content;
+}
+
+.active-info {
+  width:fit-content;
 }
 
 .card {
@@ -123,8 +134,19 @@ p.error-message {
   display: flex;
 }
 
+.plus-icon-div {
+  background-color:black;
+  width:20px;
+  height:20px;
+  border-radius: 50%;
+  display:flex;
+  align-content: center;
+}
+
 .plus-icon {
-  margin-left:10px;
+  height:20px;
+  margin:auto;
+  color: white;
 }
 
 .card[expanded] .plus-icon {
@@ -137,6 +159,8 @@ p.error-message {
   width:fit-content;
   margin-left: auto;
   margin-right: auto;
+  align-items: center;
+  
 }
 
 .skatepark-info-container{
