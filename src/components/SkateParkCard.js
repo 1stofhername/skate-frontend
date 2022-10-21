@@ -1,6 +1,6 @@
 import '../css/skateparkcard.css';
 
-export default function SkateparkCard ({ skatepark }) {
+export default function SkateparkCard ({ skatepark, renderIcons }) {
     const { name, location, imglink, users } = skatepark;
 
     const renderText = (userCount) =>{
@@ -48,9 +48,9 @@ export default function SkateparkCard ({ skatepark }) {
                     {/* <p>{location}</p> */}
                 </div>
             </div>
+            <p>{renderText(users.length)}</p>
             <div className='active-riders-container'>
-                <p id="rider-count" className="status">{renderText(users.length)}</p>
-                {users.length ? users.map(user=><div key={`${skatepark.id}_${user.id}`}><p key={`skatepark_p_${skatepark.id}`}>{user.first_name}</p></div>)
+                {users.length ? users.map(user=><p key={`${skatepark.id}_${user.id}`}>{user.first_name}</p>)
                     : null}
             </div>
         </div>

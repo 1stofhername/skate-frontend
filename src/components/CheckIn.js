@@ -56,7 +56,7 @@ export default function CheckIn ({ isCheckingIn, handleCheckInSubmit, handleChec
                     <option id="bike">bike</option>
                     <option id="other">other</option>
                 </select>
-                <input type="submit" />
+                <input className='button' type="submit" />
                 <button onClick={onCheckInCancel}>Cancel</button>
             </form>
         </div>

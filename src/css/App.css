@@ -32,8 +32,13 @@ body {
 }
 
 button {
-  height: 40px;
+  height: 30px;
   margin: 0px 20px 0px 20px;
+  border-radius: 10px;
+}
+
+#button {
+  height: 30px;
   border-radius: 10px;
 }
 
@@ -41,6 +46,16 @@ input[invalid] {
   border-style: solid;
   border-width: 1px;
   border-color: red;
+}
+
+.popover {
+  z-index:9 ;
+  height:fit-content;
+  width:100vw;
+  position:fixed;
+  top:125px;
+  background-color: white;
+  transition-duration: .5s;
 }
 
 p.error-message {
@@ -57,11 +72,11 @@ p.error-message {
   margin-bottom: -10px;
   margin-left: auto;
   margin-right: auto;
-  /* position: fixed; */
   overflow-x:hidden;
   background-image: url('../icons/skateparks_map.svg');
   background-repeat: no-repeat;
   background-size:contain;
+  z-index: 1;
 }
 
 .buttons-container {
@@ -77,10 +92,6 @@ p.error-message {
 }
 
 .greeting {
-  width:fit-content;
-}
-
-.active-info {
   width:fit-content;
 }
 
@@ -108,7 +119,7 @@ p.error-message {
 
 #judkins-skate-park {
   left: 810px;
-  bottom:10px;
+  bottom:50px;
 }
 
 #jefferson-skate-park {
@@ -123,11 +134,11 @@ p.error-message {
 
 #cal-anderson-improvised-skate-park {
   left: 780px;
-  bottom: 220px;
+  bottom: 260px;
 }
 
 #seattle-center-skate-plaza-\(seask8\){
-  bottom: 235px;
+  bottom: 275px;
   left:355px;
 }
 
@@ -176,6 +187,11 @@ p.error-message {
 
 .skatepark-info-container{
   display:flex;
+}
+
+.active-riders-container {
+  height:300px;
+  overflow-x: auto;
 }
 
 .park-img-div {
