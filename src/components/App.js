@@ -298,7 +298,8 @@ function handleInvalidInput (value) {
             />
         </div>
         : null}
-      {isSigningUp && !isLoggedIn ? <div id="signup-form">
+      {isSigningUp && !isLoggedIn ? 
+      <div id="signup-form">
         <SignUp 
           validate={validate} 
           errors={signupErrors} 

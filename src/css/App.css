@@ -43,14 +43,14 @@ body {
 
 input[type=text] {
   height: 30px;
-  width:150px;
+  width:170px;
   margin: 0px 20px 0px 20px;
   border-radius: 10px;
 }
 
 input[type=password] {
   height: 30px;
-  width:150px;
+  width:170px;
   margin: 0px 20px 0px 20px;
   border-radius: 10px;
 }
@@ -109,9 +109,19 @@ input[invalid] {
   align-items: center;
 }
 
-#sign-up-form{
-  display:flex;
-  flex-direction: column;
+#signup-form  {
+  background-image: url('../icons/loginpage.jpg');
+  background-size: cover;
+  width:100vw;
+  height:100vh;
+  display: flex;
+}
+
+.form-content {
+  height: 100%;
+  margin-top: 50%;
+  margin-bottom:50%;
+
 }
 
 p.error-message {
