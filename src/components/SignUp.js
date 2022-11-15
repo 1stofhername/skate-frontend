@@ -35,8 +35,8 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
         <div className="popover" id="sign-up">
             <div className='form-content'>
                 <h2>Sign Up</h2>
-                <form className="sign-up" name="sign-up" onSubmit={onSignUpFormSubmit}>
-                    <span className="user-info">
+                <form className="form" name="sign-up" onSubmit={onSignUpFormSubmit}>
+                    <span className="input-fields">
                         <label>
                             First Name:
                             <input type="text" name="first_name" id="first_name" placeholder="Chaka" value={formData.first_name} onChange={handleFormChange} />
@@ -53,17 +53,21 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
                             Password:
                             <input type="password" name="password" id="password" placeholder="Password" value={formData.password} onChange={handleFormChange} />
                         </label>
-                    </span>
+                        <span className="form-buttons">
                     <button type="submit">Create</button>
                     <button onClick={onCancelClick}>Cancel</button>
+                    </span>
+                    <span>
+                    <p>Already have an account? <a onClick={onCancelClick} href="">Login.</a></p>
+                    {errors.length > 0 
+                    ? errors.map(error=><p className="error-message" key={error}>
+                        {error}
+                        </p>)
+                    : null}
+                    </span>
+                    </span>
                 </form>
-                <p>Already have an account? <a onClick={onCancelClick} href="">Login.</a></p>
-                {errors.length > 0 
-                ? errors.map(error=><p className="error-message" key={error}>
-                    {error}
-                    </p>)
-                : null}
-            </div>
+                </div>
         </div>
         
     )

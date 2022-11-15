@@ -1,6 +1,6 @@
 import '../css/skateparkcard.css';
 
-export default function SkateparkCard ({ skatepark, renderIcons }) {
+export default function SkateparkCard ({ skatepark }) {
     const { name, location, imglink, users } = skatepark;
 
     const renderText = (userCount) =>{
