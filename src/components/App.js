@@ -153,7 +153,8 @@ function App() {
     .then(handleLogout)
   };
 
-  function onSignUpClick () {
+  function onSignUpClick (e) {
+    e.preventDefault();
     handleIsSigningUpChange(true);
     toggleIsLoggingIn();
   }

@@ -35,7 +35,8 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
                         <input type="submit" value="Login" />
                         </span>
                     </form>
-                    <button onClick={onSignUpClick}>Sign Up.</button>
+                    <p>Don't have an account? <a href="" onClick={(e)=>onSignUpClick(e)}>Create one.</a></p>
+
                     {error? <p className='error-message'>{error}</p>:null}
                 </div>
             </div>
