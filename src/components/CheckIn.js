@@ -34,7 +34,7 @@ export default function CheckIn ({ isCheckingIn, handleCheckInSubmit, handleChec
     }
 
     return (
-        <div className="popover" id="check-in">
+        <div id="check-in">
             <p className="title" id="check-in-form-title">Check In</p>
             <form onSubmit={onCheckInSubmit} className="form" id="check-in-form">
                 <select id="skatepark-drop-down" name="skatepark_name" onChange={onFormChange}>

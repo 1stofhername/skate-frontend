@@ -36,7 +36,7 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
             <div className='form-content'>
                 <h2>Sign Up</h2>
                 <form className="form" name="sign-up" onSubmit={onSignUpFormSubmit}>
-                    <span className="input-fields">
+                    <span className="input-fields-signup">
                         <label>
                             First Name:
                             <input type="text" name="first_name" id="first_name" placeholder="Chaka" value={formData.first_name} onChange={handleFormChange} />

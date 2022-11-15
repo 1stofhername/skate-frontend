@@ -23,7 +23,7 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
                 <div className='form-content'>
                     <h2>Login</h2>
                     <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
-                        <span className="input-fields">
+                        <span className="input-fields-login">
                         <label>
                             Email:
                             <input type="text" name="email" placeholder="Email" onChange={handleEmailChange}/>

@@ -271,6 +271,7 @@ function handleInvalidInput (value) {
           null
           }
       </header>
+      <div className='checkin-container'>
       {isLoggedIn && isCheckingIn ? 
         <CheckIn 
           userId={user.id} 
@@ -284,6 +285,7 @@ function handleInvalidInput (value) {
           />:
           null
       }
+      </div>
       {isLoggedIn && isAddingSkatepark ?
       <AddSkateparkForm
       handleSkateparkAddSubmit={handleSkateparkAddSubmit}

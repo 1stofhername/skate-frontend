@@ -31,12 +31,22 @@ body {
   width:100vw;
 }
 
-.input-fields {
+.input-fields-login {
   display:flex;
   flex-direction: column;
   align-items:flex-end;
   width:100%;
   height:130px;
+  justify-content: space-between;
+  align-self: center;
+} 
+
+.input-fields-signup {
+  display:flex;
+  flex-direction: column;
+  align-items:flex-end;
+  width:100%;
+  height:260px;
   justify-content: space-between;
   align-self: center;
 } 
@@ -109,6 +119,10 @@ input[invalid] {
   align-items: center;
 }
 
+.title {
+  margin:0px;
+}
+
 #signup-form  {
   background-image: url('../icons/loginpage.jpg');
   background-size: cover;
@@ -126,6 +140,12 @@ input[invalid] {
 
 p.error-message {
   color: red;
+}
+
+.checkin-container {
+  height:70px;
+  background-color:black;
+  color:white;
 }
 
 .skateparks-container {
