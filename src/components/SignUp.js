@@ -55,7 +55,7 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
                         </label>
                         <span className="form-buttons">
                     <button type="submit">Create</button>
-                    <button onClick={onCancelClick}>Cancel</button>
+                    {/* <button onClick={onCancelClick}>Cancel</button> */}
                     </span>
                     <span>
                     <p>Already have an account? <a onClick={onCancelClick} href="">Login.</a></p>

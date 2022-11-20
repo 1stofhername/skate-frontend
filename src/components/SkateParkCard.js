@@ -2,6 +2,7 @@ import '../css/skateparkcard.css';
 
 export default function SkateparkCard ({ skatepark }) {
     const { name, location, imglink, users } = skatepark;
+    
 
     const renderText = (userCount) =>{
         if(userCount === 1) {
