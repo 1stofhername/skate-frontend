@@ -149,6 +149,10 @@ p.error-message {
   color:white;
 }
 
+.skateparks-map-div {
+  width:500px;
+}
+
 .skateparks-container {
   /* flex-wrap: wrap; */
   height: 900px;
@@ -160,7 +164,7 @@ p.error-message {
   /* z-index: 1; */
 }
 
-.card-container {
+.skateparks-info-container {
   width:300px;
   display:flex;
   flex-direction: column;
@@ -168,7 +172,7 @@ p.error-message {
 
 .page {
   display:flex;
-  flex-direction: row-reverse;
+  /* flex-direction: row-reverse; */
   width:100vw;
 }
 
