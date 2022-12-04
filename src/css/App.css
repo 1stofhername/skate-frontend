@@ -165,7 +165,7 @@ p.error-message {
 }
 
 .skateparks-info-container {
-  width:300px;
+  width:fit-content;
   display:flex;
   flex-direction: column;
 }
@@ -291,8 +291,8 @@ p.error-message {
 }
 
 .active-riders-container {
-  height:300px;
-  overflow-x: auto;
+  height:fit-content;
+  /* overflow-x: auto; */
 }
 
 .park-img-div {
