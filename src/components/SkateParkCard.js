@@ -35,11 +35,11 @@ export default function SkateparkCard ({ skatepark }) {
 
     return(
         <div className="card" id={skateparkId}>
-                {/* <div className='park-img-div'>
-                    <img src={imglink} className="park-img" alt={`${skatepark.id}-img`} />
-                </div> */}
+            <div className='park-img-div'>
+                <img src={imglink} className="park-img" alt={`${skatepark.id}-img`} />
+            </div>
             <div className="skatepark-text-container">
-                <div className='park-details-container'>
+                {/* <div className='park-details-container'> */}
                     <div className='skatepark-name-div'>
                         <p className='skatepark-name'>{name}</p>
                     </div>
@@ -47,13 +47,13 @@ export default function SkateparkCard ({ skatepark }) {
                         <p id={`${skateparkId}_expand`} className='plus-icon'>+</p>
                     </div>
                     {/* <p>{location}</p> */}
-                </div>
+                {/* </div> */}
             </div>
-            <p>{renderText(users.length)}</p>
-            <div className='active-riders-container'>
+
+            {/* <div className='active-riders-container'>
                 {users.length ? users.map(user=><p key={`${skatepark.id}_${user.id}`}>{user.first_name}</p>)
                     : null}
-            </div>
+            </div> */}
         </div>
     )
 
