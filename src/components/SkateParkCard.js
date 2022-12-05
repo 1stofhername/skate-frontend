@@ -35,25 +35,34 @@ export default function SkateparkCard ({ skatepark }) {
 
     return(
         <div className="card" id={skateparkId}>
-            <div className='park-img-div'>
-                <img src={imglink} className="park-img" alt={`${skatepark.id}-img`} />
-            </div>
-            <div className="skatepark-text-container">
+
+            <div className="skatepark-info-container">
+
+                <div className='park-img-div'>
+                    <img src={imglink} className="park-img" alt={`${skatepark.id}-img`} />
+                </div>
+            
                 {/* <div className='park-details-container'> */}
-                    <div className='skatepark-name-div'>
-                        <p className='skatepark-name'>{name}</p>
-                    </div>
-                    <div onClick={handleExpandClick} className='plus-icon-div'>
-                        <p id={`${skateparkId}_expand`} className='plus-icon'>+</p>
-                    </div>
-                    {/* <p>{location}</p> */}
+                <div className='skatepark-name-div'>
+                    <p className='skatepark-name'>{name}</p>
+                    <p className='skatepark-location'>{location}</p>
+                </div>
+                    {/* <div onClick={handleExpandClick} className='plus-icon-div'> */}
+                        {/* <p>See Active Riders</p> */}
+                        {/* <p id={`${skateparkId}_expand`} className='plus-icon'>+</p> */}
+                    {/* </div> */}
                 {/* </div> */}
             </div>
 
-            {/* <div className='active-riders-container'>
+            <div onClick={handleExpandClick} className='plus-icon-div'>
+                        <p>See Active Riders</p>
+                        <p id={`${skateparkId}_expand`} className='plus-icon'>+</p>
+                 </div>
+
+            <div className='active-riders-container'>
                 {users.length ? users.map(user=><p key={`${skatepark.id}_${user.id}`}>{user.first_name}</p>)
                     : null}
-            </div> */}
+            </div>
         </div>
     )
 

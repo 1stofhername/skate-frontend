@@ -198,19 +198,27 @@ p.error-message {
 
 .card {
   display:flex;
-  flex-direction: row;
-  width: 300px;
-  height:1.5rem;
-  border-radius: 20px;
+  flex-direction: column;
+  width: 25rem;
+  height:8rem;
+  /* border-radius: 20px; */
   padding-top:3px;
   padding-bottom:3px;
   overflow-y: hidden;
   color: black;
   background-color:white;
   /* position:fixed; */
-  border-style: solid;
-  border-width: 4px;
+  border-bottom-style:solid;
+  /* border-width: 4px; */
   transition-duration: .2s;
+}
+
+.card :hover {
+  background-color: rgb(203, 203, 203);
+}
+
+.card :hover .skatepark-name {
+  border-bottom-style:solid ;
 }
 
 /* #lower-woodland-skate-park {
@@ -244,12 +252,12 @@ p.error-message {
 } */
 
 .card[expanded] {
-  height:8rem;
+  height:fit-content;
   transition-duration: .2s;
 }
 
-.skatepark-text-container {
-  width:300px;
+.skatepark-info-container {
+  /* width:300px; */
   display: flex;
 }
 
@@ -290,15 +298,19 @@ p.error-message {
   display:flex;
 }
 
+.skatepark-name-div {
+  width:fit-content;
+}
+
 .active-riders-container {
   height:fit-content;
   /* overflow-x: auto; */
 }
 
 .park-img-div {
-  width:200px;
-  /* height:200px; */
-  margin:5px;
+  width:115px;
+  height:115px;
+  margin: 5px;
   overflow:hidden;
   border-radius:25%;
   display:flex;
