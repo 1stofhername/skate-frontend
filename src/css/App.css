@@ -218,7 +218,7 @@ p.error-message {
 }
 
 .card :hover .skatepark-name {
-  border-bottom-style:solid ;
+  text-decoration: underline;
 }
 
 /* #lower-woodland-skate-park {
@@ -296,10 +296,11 @@ p.error-message {
 
 .skatepark-info-container{
   display:flex;
+  margin-top:5px;
 }
 
 .skatepark-name-div {
-  width:fit-content;
+  width:15rem;
 }
 
 .active-riders-container {
@@ -314,7 +315,7 @@ p.error-message {
   overflow:hidden;
   border-radius:25%;
   display:flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .park-img {

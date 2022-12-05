@@ -38,14 +38,16 @@ export default function SkateparkCard ({ skatepark }) {
 
             <div className="skatepark-info-container">
 
-                <div className='park-img-div'>
-                    <img src={imglink} className="park-img" alt={`${skatepark.id}-img`} />
-                </div>
+
             
                 {/* <div className='park-details-container'> */}
                 <div className='skatepark-name-div'>
                     <p className='skatepark-name'>{name}</p>
                     <p className='skatepark-location'>{location}</p>
+                </div>
+
+                <div className='park-img-div'>
+                    <img src={imglink} className="park-img" alt={`${skatepark.id}-img`} />
                 </div>
                     {/* <div onClick={handleExpandClick} className='plus-icon-div'> */}
                         {/* <p>See Active Riders</p> */}
