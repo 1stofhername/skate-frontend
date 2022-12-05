@@ -259,6 +259,7 @@ p.error-message {
 .skatepark-info-container {
   /* width:300px; */
   display: flex;
+  justify-content: flex-end;
 }
 
 .plus-icon-div {
