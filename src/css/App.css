@@ -260,6 +260,7 @@ p.error-message {
   /* width:300px; */
   display: flex;
   justify-content: flex-end;
+  padding-right:15px;
 }
 
 .plus-icon-div {
@@ -302,6 +303,7 @@ p.error-message {
 
 .skatepark-name-div {
   width:15rem;
+  text-align: left;
 }
 
 .active-riders-container {
