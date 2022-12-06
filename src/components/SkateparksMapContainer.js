@@ -11,7 +11,7 @@ export default function SkateparkMapContainer ({ categories, skateparks, activeS
         </div>
         <div className="page">
         
-        <div className="skateparks-info-container">
+        
         {skateparks.length > 0 
             ? skateparks.map((park)=>{
                 return (
@@ -23,7 +23,7 @@ export default function SkateparkMapContainer ({ categories, skateparks, activeS
                 : <p>Loading</p>}
                 
         {/* </div> */}
-        </div>
+        
         <div className="skateparks-container">
             </div>
         </div>

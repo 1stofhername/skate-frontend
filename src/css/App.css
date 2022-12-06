@@ -172,7 +172,7 @@ p.error-message {
 
 .page {
   display:flex;
-  /* flex-direction: row-reverse; */
+  flex-direction: column;
   width:100vw;
 }
 
