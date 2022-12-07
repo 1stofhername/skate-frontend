@@ -172,7 +172,7 @@ p.error-message {
 
 .page {
   display:flex;
-  flex-direction: column;
+  /* flex-direction: row-reverse; */
   width:100vw;
 }
 
@@ -196,11 +196,17 @@ p.error-message {
   width:fit-content;
 }
 
+.skatepark-cards-container {
+  height:500px;
+  width: fit-content;
+  overflow-y:scroll;
+}
+
 .card {
   display:flex;
   flex-direction: column;
   width: 25rem;
-  height:8rem;
+  height:fit-content;
   /* border-radius: 20px; */
   padding-top:3px;
   padding-bottom:3px;
@@ -264,18 +270,18 @@ p.error-message {
 }
 
 .plus-icon-div {
-  background-color:black;
-  width:20px;
-  height:20px;
-  border-radius: 50%;
+  /* background-color:black; */
+  /* width:20px;
+  height:20px; */
+  /* border-radius: 50%; */
   display:flex;
   align-content: center;
-  justify-self: flex-end;
+  justify-content: center;
 }
 
 .plus-icon {
   height:20px;
-  margin:auto;
+  /* margin:auto; */
   color: white;
 }
 
@@ -312,8 +318,8 @@ p.error-message {
 }
 
 .park-img-div {
-  width:115px;
-  height:115px;
+  width:100px;
+  height:100px;
   margin: 5px;
   overflow:hidden;
   border-radius:25%;

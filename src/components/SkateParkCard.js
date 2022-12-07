@@ -57,14 +57,14 @@ export default function SkateparkCard ({ skatepark }) {
             </div>
 
             <div onClick={handleExpandClick} className='plus-icon-div'>
-                        <p>See Active Riders</p>
+                        <p>{users.length? `${users.length} Active Riders`: "No Active Riders"}</p>
                         <p id={`${skateparkId}_expand`} className='plus-icon'>+</p>
                  </div>
 
-            <div className='active-riders-container'>
+            {/* <div className='active-riders-container'>
                 {users.length ? users.map(user=><p key={`${skatepark.id}_${user.id}`}>{user.first_name}</p>)
                     : null}
-            </div>
+            </div> */}
         </div>
     )
 
