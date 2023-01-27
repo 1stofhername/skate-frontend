@@ -9,17 +9,17 @@ export default function CategoryBar ({ categories }) {
 
     const renderIcons = (category)=>{
         if(category === "skateboard"){
-            return <img className="icon" src={skateboard} />
+            return <img className="icon" src={skateboard} alt="skateboard" />
         } else if(category ==="inlineskates"){
-            return <img className="icon" src={inlineskates} />
+            return <img className="icon" src={inlineskates} alt="inlineskates" />
         } else if (category === "rollerskates") {
-            return <img className="icon" src={rollerskates} />
+            return <img className="icon" src={rollerskates} alt="rollerskates" />
         } else if (category === "scooter") {
-            return <img className="icon" src={scooter} />
+            return <img className="icon" src={scooter} alt="scooter" />
         } else if (category === "bike"){
-            return <img className="icon" src={bike} />
+            return <img className="icon" src={bike} alt="bicycle" />
         } else {
-            return <img className="icon" src={other} />
+            return <img className="icon" src={other} alt="other" />
         }
     };
 
