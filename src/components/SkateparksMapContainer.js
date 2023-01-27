@@ -1,6 +1,5 @@
 import SkateparkCard from "./SkateparkCard";
 import CategoryBar from "./CategoryBar";
-import { useState } from 'react';
 
 export default function SkateparkMapContainer ({ categories, skateparks, activeSkatepark }) {
     
