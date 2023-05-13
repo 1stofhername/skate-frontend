@@ -22,17 +22,21 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
         <div className="popover" id="sign-up">
             <h2>Login</h2>
             <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
-                <label>
-                    Email:
+                <div>
+                    <label>Email:</label>
                     <input type="text" name="email" placeholder="Email" onChange={handleEmailChange}/>
-                </label>
-                <label>
-                    Password:
+                </div>
+                <div>
+                    <label>Password:</label>
                     <input type="password" name="password" placeholder="Password" onChange={handlePasswordChange} />
-                </label>
-                <input type="submit" value="Login" />
+                </div>
+                <div>
+                    <input type="submit" value="Login" />
+                </div>
             </form>
+            <span>
             <button onClick={onSignUpClick}>Sign Up.</button>
+            </span>
             {error? <p className='error-message'>{error}</p>:null}
         </div>
     )
