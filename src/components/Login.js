@@ -20,24 +20,26 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
 
     return (
         <div className="popover" id="sign-up">
-            <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
-            <legend>Login</legend>
-                <div>
-                    <label>Email:</label>
-                    <input type="text" name="email" placeholder="Email" onChange={handleEmailChange}/>
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" name="password" placeholder="Password" onChange={handlePasswordChange} />
-                </div>
-                <div>
-                    <input type="submit" value="Login" />
-                </div>
-            </form>
-            <span>
-            <button onClick={onSignUpClick}>Sign Up.</button>
-            </span>
-            {error? <p className='error-message'>{error}</p>:null}
+            <div className='form-container'>
+                <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
+                <legend>Login</legend>
+                    <div>
+                        <label>Email:</label>
+                        <input type="text" name="email" placeholder="Email" onChange={handleEmailChange}/>
+                    </div>
+                    <div>
+                        <label>Password:</label>
+                        <input type="password" name="password" placeholder="Password" onChange={handlePasswordChange} />
+                    </div>
+                    <div>
+                        <input type="submit" value="Login" />
+                    </div>
+                </form>
+                <span>
+                {/* <button onClick={onSignUpClick}>Sign Up.</button> */}
+                </span>
+                {error? <p className='error-message'>{error}</p>:null}
+            </div>
         </div>
     )
 }
