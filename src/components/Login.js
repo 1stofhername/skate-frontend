@@ -20,8 +20,8 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
 
     return (
         <div className="popover" id="sign-up">
-            <h2>Login</h2>
             <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
+            <legend>Login</legend>
                 <div>
                     <label>Email:</label>
                     <input type="text" name="email" placeholder="Email" onChange={handleEmailChange}/>
