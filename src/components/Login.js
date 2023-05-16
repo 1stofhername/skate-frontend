@@ -32,7 +32,7 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
                         <input type="password" name="password" placeholder="Password" onChange={handlePasswordChange} />
                     </div>
                     <div>
-                        <input type="submit" value="Login" />
+                        <input type="submit" value="Submit" />
                     </div>
                 </form>
                 <span>
