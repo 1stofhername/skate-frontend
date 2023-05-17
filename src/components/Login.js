@@ -18,6 +18,8 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
         setPassword(e.target.value);
     }
 
+    const status = "boo";
+
     return (
         <div className='login-page'>
             <div className='login-container'>
@@ -27,7 +29,7 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
                 <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
                     <legend>Skate.</legend>
                     <div className='toggle-buttons-container'>
-                        <button className='form-button'>Login</button>
+                        <button className='form-button' status={status}>Login</button>
                         <button className='form-button' onClick={onSignUpClick}>Sign Up</button>
                     </div>
                     <div className='form-fields-container'>
