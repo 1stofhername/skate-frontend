@@ -68,6 +68,7 @@ input[type="password"]{
     display:flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    margin-bottom: 15px;
 }
 
 /* .form-button:hover,.form button:active,.form button:focus {

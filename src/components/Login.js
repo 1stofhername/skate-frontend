@@ -28,7 +28,7 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
                     <legend>Skate.</legend>
                     <div className='toggle-buttons-container'>
                         <button className='form-button'>Login</button>
-                        <button className='form-button'>Sign Up</button>
+                        <button className='form-button' onClick={onSignUpClick}>Sign Up</button>
                     </div>
                     <div className='form-fields-container'>
                         <input type="text" name="email" placeholder="email" onChange={handleEmailChange}/>
@@ -36,13 +36,14 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
                         <input type="password" name="password" placeholder="password" onChange={handlePasswordChange} />
                     </div>
                     <div>
-                        <input className='form-button' type="submit" value="Submit" />
+                        <input className='form-button' type="submit" value="submit" />
                     </div>
+                    {error? <p className='error-message'>{error}</p>:null}
                 </form>
                 <span>
                 {/* <button onClick={onSignUpClick}>Sign Up.</button> */}
                 </span>
-                {error? <p className='error-message'>{error}</p>:null}
+                
                 </div>
             </div>
         </div>
