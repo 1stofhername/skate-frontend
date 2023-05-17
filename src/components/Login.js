@@ -1,9 +1,15 @@
 import { useState } from 'react';
 import '../css/login.css';
 
-export default function Login ({ handleLogin, onSignUpClick, error }) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn }) {
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+    const [formData, setFormData] = useState({
+        first_name:null,
+        last_name:null,
+        email:null,
+        password:null
+    })
 
 
     function handleSubmit (e) {
@@ -34,6 +40,7 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
                         <button className='form-button' onClick={onSignUpClick}>Sign Up</button>
                     </div>
                     <div className='form-fields-container'>
+                        <input type="text" name="first_name" id="first_name" placeholder="Chaka" value={formData.first_name} onChange={handleFormChange} />
                         <input type="text" name="email" placeholder="email" onChange={handleEmailChange}/>
                     
                         <input type="password" name="password" placeholder="password" onChange={handlePasswordChange} />
