@@ -25,16 +25,19 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
                 </div>
                 <div className='form-container'>
                 <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
-                    <legend>Login</legend>
-                        <div>
-                            <input type="text" name="email" placeholder="email" onChange={handleEmailChange}/>
-                        </div>
-                        <div>
-                            <input type="password" name="password" placeholder="password" onChange={handlePasswordChange} />
-                        </div>
-                        <div>
-                            <input type="submit" value="Submit" />
-                        </div>
+                    <legend>Skate.</legend>
+                    <div className='toggle-buttons-container'>
+                        <button className='form-button'>Login</button>
+                        <button className='form-button'>Sign Up</button>
+                    </div>
+                    <div className='form-fields-container'>
+                        <input type="text" name="email" placeholder="email" onChange={handleEmailChange}/>
+                    
+                        <input type="password" name="password" placeholder="password" onChange={handlePasswordChange} />
+                    </div>
+                    <div>
+                        <input className='form-button' type="submit" value="Submit" />
+                    </div>
                 </form>
                 <span>
                 {/* <button onClick={onSignUpClick}>Sign Up.</button> */}

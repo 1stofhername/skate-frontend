@@ -30,8 +30,47 @@
 }
 
 #sign-up-form {
-    width:fit-content;
-    height:fit-content;
+    width:60%;
+    /* height:fit-content; */
     margin:auto;
-
 }
+
+.form-fields-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+input[type="text"]{
+    margin: 0 0 15px 0;
+    background: #f2f2f2;
+    border: 0;
+    padding: 10px 15px 10px 15px;
+}
+
+input[type="password"]{
+    margin: 0 0 15px 0;
+    background: #f2f2f2;
+    border: 0;
+    padding: 10px 15px 10px 15px ;
+}
+
+
+.form-button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    border: 0;
+    width:100%;
+    padding: 10px 15px 10px 15px ;
+}
+
+.toggle-buttons-container {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+/* .form-button:hover,.form button:active,.form button:focus {
+    background: #43A047;
+  } */
+
