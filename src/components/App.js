@@ -283,6 +283,7 @@ function handleInvalidInput (value) {
           setErrors={setSignupErrors} 
           handleSignUp={handleSignUp}
           handleSignUpCancel={handleSignUpCancel}
+          isLoggingIn={isLoggingIn}
           />
       </div>:null}
         {isLoggedIn ? <SkateparksMapContainer categories={categories} skateparks={skateparks} activeSkatepark={activeSkatepark} />:null}

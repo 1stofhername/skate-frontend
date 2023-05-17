@@ -32,6 +32,7 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
 
     return (
         <div className="popover" id="sign-up">
+            <div className='elements-container'>
             <h2>Sign Up</h2>
             <form className="sign-up" name="sign-up" onSubmit={onSignUpFormSubmit}>
                 <span className="user-info">
@@ -62,6 +63,7 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
                 </p>)
                 
               : null}
+              </div>
         </div>
     )
 }
