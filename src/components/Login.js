@@ -22,7 +22,7 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
     
 
     return (
-        <div className='login-page'>
+        <div className='pop-over'>
             <div className='login-container'>
                 <div className='image-container'>
                 </div>
