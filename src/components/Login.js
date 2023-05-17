@@ -23,7 +23,7 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
 
     return (
         <div className='pop-over'>
-            <div className='login-container'>
+            <div className='elements-container'>
                 <div className='image-container'>
                 </div>
                 <div className='form-container'>
