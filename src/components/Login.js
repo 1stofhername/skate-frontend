@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../css/login.css';
 
-export default function Login ({ handleLogin, onSignUpClick, error }) {
+export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -19,8 +19,6 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
         setPassword(e.target.value);
     }
 
-    
-
     return (
         <div className='login-page'>
             <div className='login-container'>
@@ -30,7 +28,7 @@ export default function Login ({ handleLogin, onSignUpClick, error }) {
                 <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
                     <legend>Skate.</legend>
                     <div className='toggle-buttons-container'>
-                        <button className='form-button'>Login</button>
+                        <button className='form-button' id={isLoggingIn?"selected":null}>Login</button>
                         <button className='form-button' onClick={onSignUpClick}>Sign Up</button>
                     </div>
                     <div className='form-fields-container'>
