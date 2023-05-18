@@ -1,11 +1,9 @@
-import LoginForm from './LoginForm';
 import { useState } from 'react';
-import '../css/login.css';
 
-export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn }) {
+export default function LoginForm (handleLogin, error) {
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
 
     function handleSubmit (e) {
         e.preventDefault();
@@ -20,19 +18,13 @@ export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn 
         setPassword(e.target.value);
     }
 
-    return (
-        <div className='login-page'>
-            <div className='login-container'>
-                <div className='image-container'>
-                </div>
-                <div className='form-container'>
-                    <LoginForm error={error} handleLogin={handleLogin}/>
-                {/* <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
-                    <legend>Skate.</legend>
+    return(
+        <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
+                    {/* <legend>Skate.</legend>
                     <div className='toggle-buttons-container'>
                         <button className='form-button' id={isLoggingIn?"selected":null}>Login</button>
                         <button className='form-button' onClick={onSignUpClick}>Sign Up</button>
-                    </div>
+                    </div> */}
                     <div className='form-fields-container'>
                         <input type="text" name="email" placeholder="email" onChange={handleEmailChange}/>
                     
@@ -41,14 +33,7 @@ export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn 
                     <div>
                         <input className='form-button' type="submit" value="submit" />
                     </div>
-                    {error? <p className='error-message'>{error}</p>:null}
-                </form> */}
-                <span>
-                {/* <button onClick={onSignUpClick}>Sign Up.</button> */}
-                </span>
-                
-                </div>
-            </div>
-        </div>
+                    {/* {error? <p className='error-message'>{error}</p>:null} */}
+                </form>
     )
 }
