@@ -3,7 +3,7 @@ import SignUpForm from './SignUpForm';
 import { useState } from 'react';
 import '../css/login.css';
 
-export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn, handleLoginClick }) {
+export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn, handleLoginClick, isSigningUp }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -36,7 +36,7 @@ export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn,
                         <h2>Skate.</h2>
                         <div className='form-toggle-button-container'>
                             <button className='form-button' onClick={onLoginClick} id={isLoggingIn?"selected":null}>Login</button>
-                            <button className='form-button' onClick={onSignUpClick}>Sign Up</button>
+                            <button className='form-button' onClick={onSignUpClick} id={isSigningUp?"selected":null}>Sign Up</button>
                         </div>
                     </div>
                     <LoginForm handleEmailChange={handleEmailChange} handleSubmit={handleSubmit} handlePasswordChange={handlePasswordChange} error={error}/>

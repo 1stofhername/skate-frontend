@@ -127,8 +127,9 @@ function App() {
     })
   };
 
-  function handleLoginClick () {
-    setIsSigningUp(false);
+  function handleLoginClick (e) {
+    e.preventDefault();
+    toggleIsSigningUp();
     setIsLoggingIn(true);
   }
 
@@ -148,7 +149,8 @@ function App() {
     .then(handleLogout)
   };
 
-  function onSignUpClick () {
+  function onSignUpClick (e) {
+    e.preventDefault();
     handleIsSigningUpChange(true);
     toggleIsLoggingIn();
   }
@@ -170,6 +172,10 @@ function App() {
   const toggleIsLoggingIn = ()=>{
     setIsLoggingIn(!isLoggingIn);
   };
+
+  const toggleIsSigningUp = ()=>{
+    setIsSigningUp(!isSigningUp)
+  }
 
   ///// Add Skatepark /////
 
