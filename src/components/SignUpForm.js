@@ -25,11 +25,6 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
         console.log(formData)
     };
 
-    function onCancelClick (e){
-        e.preventDefault();
-        handleLoginClick();
-    }
-
     return (
         <div className="popover" id="sign-up">
             <form className="sign-up" name="sign-up" onSubmit={onSignUpFormSubmit}>
@@ -39,8 +34,8 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
                     <input type="text" name="email" id="email" placeholder="email" value={formData.email} onChange={handleFormChange} />
                     <input type="password" name="password" id="password" placeholder="password" value={formData.password} onChange={handleFormChange} />
                 </div>
+
                 <button type="submit">Create</button>
-                <button onClick={onCancelClick}>Cancel</button>
                 {errors.length > 0 
               ? errors.map(error=><p className="error-message" key={error}>
                 {error}
