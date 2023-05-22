@@ -34,23 +34,11 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
         <div className="popover" id="sign-up">
             {/* <h2>Sign Up</h2> */}
             <form className="sign-up" name="sign-up" onSubmit={onSignUpFormSubmit}>
-                <div className='form-fields-container'>
-                    <label>
-                        First Name:
-                        <input type="text" name="first_name" id="first_name" placeholder="Chaka" value={formData.first_name} onChange={handleFormChange} />
-                    </label>
-                    <label>
-                        Last Name:
-                        <input type="text" name="last_name" id="last_name" placeholder="Zulu" value={formData.last_name} onChange={handleFormChange} />
-                    </label>
-                    <label>
-                        Email:
-                        <input type="text" name="email" id="email" placeholder="ChakaZulu@email.com" value={formData.email} onChange={handleFormChange} />
-                    </label>
-                    <label>
-                        Password:
-                        <input type="password" name="password" id="password" placeholder="Password" value={formData.password} onChange={handleFormChange} />
-                    </label>
+                <div className='form-fields-container'>  
+                    <input type="text" name="first_name" id="first_name" placeholder="first name" value={formData.first_name} onChange={handleFormChange} />
+                    <input type="text" name="last_name" id="last_name" placeholder="last name" value={formData.last_name} onChange={handleFormChange} />
+                    <input type="text" name="email" id="email" placeholder="email" value={formData.email} onChange={handleFormChange} />
+                    <input type="password" name="password" id="password" placeholder="password" value={formData.password} onChange={handleFormChange} />
                 </div>
                 <button type="submit">Create</button>
                 <button onClick={onCancelClick}>Cancel</button>
