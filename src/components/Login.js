@@ -39,17 +39,6 @@ export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn,
                         </div>
                     </div>
                     <LoginForm handleEmailChange={handleEmailChange} handleSubmit={handleSubmit} handlePasswordChange={handlePasswordChange} error={error}/>
-                    {/* <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
-                            <div className='form-fields-container'>
-                            <input type="text" name="email" placeholder="email" onChange={handleEmailChange}/>
-                        
-                            <input type="password" name="password" placeholder="password" onChange={handlePasswordChange} />
-                        </div>
-                        <div>
-                            <input className='form-button' type="submit" value="submit" />
-                        </div>
-                        {error? <p className='error-message'>{error}</p>:null}
-                    </form> */}
                 </div>
             </div>
         </div>
