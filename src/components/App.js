@@ -151,9 +151,9 @@ function App() {
 
   function onSignUpClick (e) {
     e.preventDefault();
-    handleIsSigningUpChange(true);
+    toggleIsSigningUp();
     toggleIsLoggingIn();
-  }
+  };
 
   const handleUserChange = (data) => {
     window.sessionStorage.setItem('user', JSON.stringify(data));
@@ -163,10 +163,6 @@ function App() {
   const handleIsLoggedInChange = (boolean) => {
     window.sessionStorage.setItem('isLoggedIn', boolean);
     setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
-  };
-  
-  const handleIsSigningUpChange = (boolean) => {
-    setIsSigningUp(boolean);
   };
 
   const toggleIsLoggingIn = ()=>{
