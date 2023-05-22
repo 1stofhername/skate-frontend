@@ -127,10 +127,9 @@ function App() {
     })
   };
 
-  function handleLoginClick (e) {
-    e.preventDefault();
+  function handleLoginClick () {
     toggleIsSigningUp();
-    setIsLoggingIn(true);
+    toggleIsLoggingIn();
   }
 
   // State/attribute change handlers
