@@ -28,7 +28,16 @@
     min-width: fit-content;
     width:60%;
     display: flex;
+    flex-direction: column;
     background-color: white;
+}
+
+.form-toggle-button-container {
+    display:flex;
+    flex-direction: row;
+    min-width: fit-content;
+    width:60%;
+    margin:auto;
 }
 
 #sign-up-form {
@@ -77,9 +86,9 @@ button#selected {
     -8px -8px 12px 0 rgba(0, 0, 0, .25) inset;
 }
 
-.toggle-buttons-container {
+.form-header {
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     margin-bottom: 15px;
 }
