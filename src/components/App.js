@@ -270,7 +270,7 @@ function handleInvalidInput (value) {
        />:null
       }
       {(!isLoggedIn && isLoggingIn) || (!isLoggedIn && isSigningUp) ? 
-        <div id="login-form">
+        <div id="login-signup">
           <LoginSignUp
             handleLogin={handleLogin} 
             onSignUpClick={onSignUpClick} 

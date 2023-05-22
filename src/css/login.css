@@ -47,6 +47,10 @@
     margin:auto;
 }
 
+#login-form {
+    width:60%;
+}
+
 .names-inputs {
     display: flex;
     flex-direction: row;
