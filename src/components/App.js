@@ -278,7 +278,7 @@ function handleInvalidInput (value) {
             />
         </div>
         : null}
-      {isSigningUp && !isLoggedIn ? <div id="signup-form">
+      {/* {isSigningUp && !isLoggedIn ? <div id="signup-form">
         <SignUp 
           validate={validate} 
           errors={signupErrors} 
@@ -286,7 +286,7 @@ function handleInvalidInput (value) {
           handleSignUp={handleSignUp}
           handleLoginClick={handleLoginClick}
           />
-      </div>:null}
+      </div>:null} */}
         {isLoggedIn ? <SkateparksMapContainer categories={categories} skateparks={skateparks} activeSkatepark={activeSkatepark} />:null}
     </div> 
 

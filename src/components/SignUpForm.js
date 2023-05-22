@@ -32,9 +32,9 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
 
     return (
         <div className="popover" id="sign-up">
-            <h2>Sign Up</h2>
+            {/* <h2>Sign Up</h2> */}
             <form className="sign-up" name="sign-up" onSubmit={onSignUpFormSubmit}>
-                <span className="user-info">
+                <div className='form-fields-container'>
                     <label>
                         First Name:
                         <input type="text" name="first_name" id="first_name" placeholder="Chaka" value={formData.first_name} onChange={handleFormChange} />
@@ -51,17 +51,23 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
                         Password:
                         <input type="password" name="password" id="password" placeholder="Password" value={formData.password} onChange={handleFormChange} />
                     </label>
-                </span>
+                </div>
                 <button type="submit">Create</button>
                 <button onClick={onCancelClick}>Cancel</button>
-            </form>
-            <p>Already have an account? Login.</p>
-            {errors.length > 0 
+                {errors.length > 0 
               ? errors.map(error=><p className="error-message" key={error}>
                 {error}
                 </p>)
                 
               : null}
+            </form>
+            {/* <p>Already have an account? Login.</p> */}
+            {/* {errors.length > 0 
+              ? errors.map(error=><p className="error-message" key={error}>
+                {error}
+                </p>)
+                
+              : null} */}
         </div>
     )
 }
