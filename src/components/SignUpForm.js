@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function SignUp ({ validate, errors, setErrors, handleSignUp, handleLoginClick }) {
+export default function SignUpForm ({ validate, errors, setErrors, handleSignUp, handleLoginClick }) {
 
     const [formData, setFormData] = useState({
         first_name:null,
