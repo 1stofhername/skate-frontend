@@ -1,4 +1,4 @@
-export default function LoginForm () {
+export default function LoginForm ({handleEmailChange, handleSubmit, handlePasswordChange, error}) {
     return (
         <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
             <div className='form-fields-container'>

@@ -1,3 +1,4 @@
+import LoginForm from './LoginForm';
 import { useState } from 'react';
 import '../css/login.css';
 
@@ -32,7 +33,8 @@ export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn 
                             <button className='form-button' onClick={onSignUpClick}>Sign Up</button>
                         </div>
                     </div>
-                    <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
+                    <LoginForm handleEmailChange={handleEmailChange} handleSubmit={handleSubmit} handlePasswordChange={handlePasswordChange} error={error}/>
+                    {/* <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
                             <div className='form-fields-container'>
                             <input type="text" name="email" placeholder="email" onChange={handleEmailChange}/>
                         
@@ -42,7 +44,7 @@ export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn 
                             <input className='form-button' type="submit" value="submit" />
                         </div>
                         {error? <p className='error-message'>{error}</p>:null}
-                    </form>
+                    </form> */}
                 </div>
             </div>
         </div>
