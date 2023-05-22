@@ -4,7 +4,7 @@ import ProfileBar from './ProfileBar';
 import Login from './Login';
 import CheckIn from './CheckIn';
 import AddSkateparkForm from './AddSkateparkForm';
-import SignUp from './SignUp';
+import SignUp from './SignUpForm';
 import SkateparksMapContainer from './SkateparksMapContainer';
 import '../css/App.css';
 
