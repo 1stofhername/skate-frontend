@@ -27,7 +27,8 @@ export default function SignUpForm ({ validate, errors, setErrors, handleSignUp 
 
     return (
         
-            <form className="sign-up" name="sign-up" onSubmit={onSignUpFormSubmit}>
+            <form className="form" id="sign-up-form" name="sign-up" onSubmit={onSignUpFormSubmit}>
+
                 <div className='form-fields-container'>  
                     <input type="text" name="first_name" id="first_name" placeholder="first name" value={formData.first_name} onChange={handleFormChange} />
                     <input type="text" name="last_name" id="last_name" placeholder="last name" value={formData.last_name} onChange={handleFormChange} />
