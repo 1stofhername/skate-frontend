@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ProfileBar from './ProfileBar';
-import Login from './Login';
+import LoginSignUp from './LoginSignUp';
 import CheckIn from './CheckIn';
 import AddSkateparkForm from './AddSkateparkForm';
 import SignUp from './SignUpForm';
@@ -228,7 +228,7 @@ function handleInvalidInput (value) {
 
   <Routes>
     <Route path="/" element={<App />} />
-    <Route path="/login" element={<Login />} />
+    <Route path="/login" element={<LoginSignUp />} />
     <Route path="/sign-up" element={<SignUp />} />
   </Routes>
 
@@ -271,7 +271,7 @@ function handleInvalidInput (value) {
       }
       {(!isLoggedIn && isLoggingIn) || (!isLoggedIn && isSigningUp) ? 
         <div id="login-form">
-          <Login 
+          <LoginSignUp
             handleLogin={handleLogin} 
             onSignUpClick={onSignUpClick} 
             handleLoginClick={handleLoginClick}
