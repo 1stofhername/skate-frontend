@@ -282,6 +282,10 @@ function handleInvalidInput (value) {
             isSigningUp={isSigningUp}
             error={loginError}
             isLoggingIn={isLoggingIn}
+            validate={validate} 
+            errors={signupErrors} 
+            setErrors={setSignupErrors} 
+            handleSignUp={handleSignUp}
             />
         </div>
         : null}
