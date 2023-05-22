@@ -2,7 +2,7 @@ import LoginForm from './LoginForm';
 import { useState } from 'react';
 import '../css/login.css';
 
-export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn }) {
+export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn, handleLoginClick }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -20,6 +20,11 @@ export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn 
         setPassword(e.target.value);
     }
 
+    function onLoginClick (e){
+        e.preventDefault();
+        handleLoginClick();
+    }
+
     return (
         <div className='login-page'>
             <div className='login-container'>
@@ -29,7 +34,7 @@ export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn 
                     <div className='form header'>
                         <h2>Skate.</h2>
                         <div className='form-toggle-button-container'>
-                            <button className='form-button' id={isLoggingIn?"selected":null}>Login</button>
+                            <button className='form-button' onClick={onLoginClick} id={isLoggingIn?"selected":null}>Login</button>
                             <button className='form-button' onClick={onSignUpClick}>Sign Up</button>
                         </div>
                     </div>

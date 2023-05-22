@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function SignUp ({ validate, errors, setErrors, handleSignUp, handleSignUpCancel }) {
+export default function SignUp ({ validate, errors, setErrors, handleSignUp, handleLoginClick }) {
 
     const [formData, setFormData] = useState({
         first_name:null,
@@ -27,7 +27,7 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
 
     function onCancelClick (e){
         e.preventDefault();
-        handleSignUpCancel();
+        handleLoginClick();
     }
 
     return (

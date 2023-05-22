@@ -127,7 +127,7 @@ function App() {
     })
   };
 
-  function handleSignUpCancel () {
+  function handleLoginClick () {
     setIsSigningUp(false);
     setIsLoggingIn(true);
   }
@@ -274,6 +274,7 @@ function handleInvalidInput (value) {
             onSignUpClick={onSignUpClick} 
             error={loginError}
             isLoggingIn={isLoggingIn}
+            handleLoginClick={handleLoginClick}
             />
         </div>
         : null}
@@ -283,7 +284,7 @@ function handleInvalidInput (value) {
           errors={signupErrors} 
           setErrors={setSignupErrors} 
           handleSignUp={handleSignUp}
-          handleSignUpCancel={handleSignUpCancel}
+          handleLoginClick={handleLoginClick}
           />
       </div>:null}
         {isLoggedIn ? <SkateparksMapContainer categories={categories} skateparks={skateparks} activeSkatepark={activeSkatepark} />:null}
