@@ -26,7 +26,7 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
     };
 
     return (
-        <div className="popover" id="sign-up">
+        
             <form className="sign-up" name="sign-up" onSubmit={onSignUpFormSubmit}>
                 <div className='form-fields-container'>  
                     <input type="text" name="first_name" id="first_name" placeholder="first name" value={formData.first_name} onChange={handleFormChange} />
@@ -43,6 +43,6 @@ export default function SignUp ({ validate, errors, setErrors, handleSignUp, han
                 
               : null}
             </form>
-        </div>
+
     )
 }
