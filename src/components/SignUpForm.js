@@ -36,7 +36,7 @@ export default function SignUpForm ({ validate, errors, setErrors, handleSignUp 
                     <input type="password" name="password" id="password" placeholder="password" value={formData.password} onChange={handleFormChange} />
                 </div>
 
-                <button type="submit">Create</button>
+                <input className='form-button' type="submit" value="submit" />
                 {errors.length > 0 
               ? errors.map(error=><p className="error-message" key={error}>
                 {error}

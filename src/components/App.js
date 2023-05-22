@@ -109,6 +109,7 @@ function App() {
   // Sign up
 
   function handleSignUp (formData) {
+    if (errorArray.length === 0)
     fetch('http://localhost:9292/users/signup', {
       method: "POST",
       headers: {
