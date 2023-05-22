@@ -272,9 +272,10 @@ function handleInvalidInput (value) {
           <Login 
             handleLogin={handleLogin} 
             onSignUpClick={onSignUpClick} 
+            handleLoginClick={handleLoginClick}
+            isSigningUp={isSigningUp}
             error={loginError}
             isLoggingIn={isLoggingIn}
-            handleLoginClick={handleLoginClick}
             />
         </div>
         : null}
