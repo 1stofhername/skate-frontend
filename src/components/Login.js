@@ -33,11 +33,6 @@ export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn 
                         </div>
                     </div>
                     <form className="form" id="sign-up-form" onSubmit={handleSubmit}>
-                        {/* <legend>Skate.</legend>
-                        <div className='toggle-buttons-container'>
-                            <button className='form-button' id={isLoggingIn?"selected":null}>Login</button>
-                            <button className='form-button' onClick={onSignUpClick}>Sign Up</button>
-                        </div> */}
                             <div className='form-fields-container'>
                             <input type="text" name="email" placeholder="email" onChange={handleEmailChange}/>
                         
@@ -48,10 +43,6 @@ export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn 
                         </div>
                         {error? <p className='error-message'>{error}</p>:null}
                     </form>
-                <span>
-                {/* <button onClick={onSignUpClick}>Sign Up.</button> */}
-                </span>
-                
                 </div>
             </div>
         </div>
