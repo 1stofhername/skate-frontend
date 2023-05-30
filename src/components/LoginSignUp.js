@@ -1,48 +1,49 @@
-import LoginForm from './LoginForm';
-import SignUpForm from './SignUpForm';
 import { useState } from 'react';
-import '../css/login.css';
 
-export default function Login ({ handleLogin, onSignUpClick, error, isLoggingIn, handleLoginClick, isSigningUp,  validate, errors, setErrors, handleSignUp }) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+export default function SignUpForm ({ validate, errors, setErrors, handleSignUp }) {
 
+    const [formData, setFormData] = useState({
+        first_name:null,
+        last_name:null,
+        email:null,
+        password:null
+    })
 
-    function handleSubmit (e) {
+    function onSignUpFormSubmit (e) {
         e.preventDefault();
-        handleLogin({email:`${email}`, password:`${password}`})
+        setErrors([]);
+        validate(formData);
+        if (errors.length === 0) {
+            handleSignUp(formData)
+        }
     }
 
-    function handleEmailChange (e) {
-        setEmail(e.target.value);
-    }
-
-    function handlePasswordChange (e) {
-        setPassword(e.target.value);
-    }
-
-    function onLoginClick (e){
-        e.preventDefault();
-        handleLoginClick();
-    }
+    function handleFormChange (e) {
+        let name = e.target.name;
+        let value = e.target.value;
+        setFormData({...formData, [name]:value})
+        console.log(formData)
+    };
 
     return (
-        <div className='login-page'>
-            <div className='login-container'>
-                <div className='image-container'>
+        
+            <form className="form" id="sign-up-form" name="sign-up" onSubmit={onSignUpFormSubmit}>
+
+                <div className='form-fields-container'>  
+                    <input type="text" name="first_name" id="first_name" placeholder="first name" value={formData.first_name} onChange={handleFormChange} />
+                    <input type="text" name="last_name" id="last_name" placeholder="last name" value={formData.last_name} onChange={handleFormChange} />
+                    <input type="text" name="email" id="email" placeholder="email" value={formData.email} onChange={handleFormChange} />
+                    <input type="password" name="password" id="password" placeholder="password" value={formData.password} onChange={handleFormChange} />
                 </div>
-                <div className='form-container'>
-                    <div className='form header'>
-                        <h2>Skate.</h2>
-                        <div className='form-toggle-button-container'>
-                            <button className='form-button' onClick={onLoginClick} id={isLoggingIn?"selected":null}>Login</button>
-                            <button className='form-button' onClick={onSignUpClick} id={isSigningUp?"selected":null}>Sign Up</button>
-                        </div>
-                    </div>
-                    {isLoggingIn ? <LoginForm handleEmailChange={handleEmailChange} handleSubmit={handleSubmit} handlePasswordChange={handlePasswordChange} error={error}/>: <SignUpForm  validate={validate} errors={errors} setErrors={setErrors} handleSignUp={handleSignUp}
-          handleLoginClick={handleLoginClick} />}
-                </div>
-            </div>
-        </div>
+
+                <input className='form-button' type="submit" value="submit" />
+                {errors.length > 0 
+              ? errors.map(error=><p className="error-message" key={error}>
+                {error}
+                </p>)
+                
+              : null}
+            </form>
+
     )
 }
