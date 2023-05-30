@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-p {
-  margin-top:5px;
-  margin-bottom:5px;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -16,82 +11,13 @@ p {
   color: #61dafb;
 }
 
-body {
-  position:fixed;
-}
-
 .bar {
   display:flex;
-  flex-direction: column;
-  height: 75px;
-  align-items: flex-start;
-  padding-left: 20px;
-  background-color: black;
+  flex-direction: row;
+  height: 10vh;
+  width:100%;
+  background-color: #282c34;
   color:white;
-  width:100vw;
-}
-
-.input-fields-login {
-  display:flex;
-  flex-direction: column;
-  align-items:flex-end;
-  width:100%;
-  height:130px;
-  justify-content: space-between;
-  align-self: center;
-} 
-
-.input-fields-signup {
-  display:flex;
-  flex-direction: column;
-  align-items:flex-end;
-  width:100%;
-  height:260px;
-  justify-content: space-between;
-  align-self: center;
-} 
-
-input[type=text] {
-  height: 30px;
-  width:170px;
-  margin: 0px 20px 0px 20px;
-  border-radius: 10px;
-}
-
-input[type=password] {
-  height: 30px;
-  width:170px;
-  margin: 0px 20px 0px 20px;
-  border-radius: 10px;
-}
-
-input[type=submit] {
-    height: 30px;
-    width:100px;
-    margin: 0px 20px 0px 20px;
-    border-radius: 10px;
-    margin-left:auto;
-    margin-right:auto;
-}
-
-input[value=Login] {
-  width:100px;
-  align-self: center;
-}
-
-button {
-  height: 30px;
-  width:100px;
-  margin: 0px 20px 0px 20px;
-  border-radius: 10px;
-  margin-right:auto;
-  margin-left:auto;
-  background-color: white;
-}
-
-#button {
-  height: 30px;
-  border-radius: 10px;
 }
 
 input[invalid] {
@@ -100,265 +26,37 @@ input[invalid] {
   border-color: red;
 }
 
-.login-page {
-  background-image: url('../icons/loginpage.jpg');
-  background-size: cover;
-  width:100vw;
-  height:100vh;
-  display: flex;
-
-}
-
-.popover {
-  z-index:9 ;
-  height:100vh;
-  width:500px;
-  background-color: white;
-  transition-duration: .5s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.title {
-  margin:0px;
-}
-
-#signup-form  {
-  background-image: url('../icons/loginpage.jpg');
-  background-size: cover;
-  width:100vw;
-  height:100vh;
-  display: flex;
-}
-
-.form-content {
-  height: 100%;
-  margin-top: 50%;
-  margin-bottom:50%;
-
-}
-
 p.error-message {
   color: red;
 }
 
-.checkin-container {
-  height:50px;
-  background-color:black;
-  color:white;
-}
-
-.skateparks-map-div {
-  width:500px;
-}
-
 .skateparks-container {
-  /* flex-wrap: wrap; */
-  height: 900px;
-  width:1000px;
-  overflow-x:hidden;
-  background-image: url('../icons/skateparks_map.png');
-  background-repeat: no-repeat;
-  background-size:contain;
-  /* z-index: 1; */
-}
-
-.skateparks-info-container {
-  width:fit-content;
-  display:flex;
-  flex-direction: column;
-}
-
-.page {
-  display:flex;
-  /* flex-direction: row-reverse; */
-  width:100vw;
-}
-
-.form-buttons {
-  width:100%;
   display: flex;
-}
-
-.buttons-container {
-  width:300px;
-}
-
-#user-details {
-  width:300px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-}
-
-.greeting {
-  width:fit-content;
-}
-
-.skatepark-cards-container {
-  height:500px;
-  width: fit-content;
-  overflow-y:scroll;
 }
 
 .card {
-  display:flex;
-  flex-direction: column;
-  width: 25rem;
-  height:fit-content;
-  /* border-radius: 20px; */
-  padding-top:3px;
-  padding-bottom:3px;
-  overflow-y: hidden;
-  color: black;
-  background-color:white;
-  /* position:fixed; */
-  border-bottom-style:solid;
-  /* border-width: 4px; */
-  transition-duration: .2s;
-}
-
-.card :hover {
-  background-color: rgb(203, 203, 203);
-}
-
-.card :hover .skatepark-name {
-  text-decoration: underline;
-}
-
-/* #lower-woodland-skate-park {
-  left: 720px;
-  top: 195px;
-}
-
-#judkins-skate-park {
-  left: 810px;
-  bottom:50px;
-}
-
-#jefferson-skate-park {
-  left:485px;
-  top:505px;
-}
-
-#delridge-skate-park {
-  bottom:40px;
-  left:290px;
-}
-
-#cal-anderson-improvised-skate-park {
-  left: 780px;
-  bottom: 260px;
-}
-
-#seattle-center-skate-plaza-\(seask8\){
-  bottom: 275px;
-  left:355px;
-} */
-
-.card[expanded] {
-  height:fit-content;
-  transition-duration: .2s;
-}
-
-.skatepark-info-container {
-  /* width:300px; */
-  display: flex;
-  justify-content: flex-end;
-  padding-right:15px;
-}
-
-.plus-icon-div {
-  /* background-color:black; */
-  /* width:20px;
-  height:20px; */
-  /* border-radius: 50%; */
-  display:flex;
-  align-content: center;
-  justify-content: center;
-}
-
-.plus-icon {
-  height:20px;
-  /* margin:auto; */
-  color: white;
-}
-
-.card[expanded] .plus-icon {
-  transform:rotate(45deg);
-  transition-duration: .2s;
-}
-
-.park-details-container {
-  display:flex;
-  width:320px;
-  padding-right:5px;
-  padding-left:5px;
-  flex-wrap: nowrap;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.skatepark-info-container{
-  display:flex;
-  margin-top:5px;
-}
-
-.skatepark-name-div {
-  width:15rem;
-  text-align: left;
-}
-
-.active-riders-container {
-  height:fit-content;
-  /* overflow-x: auto; */
-}
-
-.park-img-div {
-  width:100px;
-  height:100px;
-  margin: 5px;
-  overflow:hidden;
-  border-radius:25%;
-  display:flex;
-  justify-content: flex-end;
+  border-style:solid;
+  border-width: .5px;
+  border-color: black;
+  width:fit-content;
+  border-radius: 5px;
+  padding:20px;
+  margin:20px;
 }
 
 .park-img {
-  /* width:10rem; */
-  height: 150px;
+  width:10rem;
+
 }
 
 .status {
   color:red;
 }
 
-.category-bar {
-  width:100vw;
-  padding-left: auto;
-  padding-right:auto;
-
-}
-
 .category-list {
   display: flex;
-  height:50px;
-  width:600px;
-  margin: 0px auto 0px auto;
-  justify-content: space-between;
-}
-
-.category-info-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: flex-end;
 }
 
 .icon {
   height:30px;
-  margin-right:10px;
 }
