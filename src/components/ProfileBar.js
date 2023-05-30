@@ -1,5 +1,3 @@
-// import UserGreeting from "./UserGreeting";
-
 export default function ProfileBar ({ handleLogout, handleDelete, renderCheckIn, handleCheckout, user, isCheckingIn, isAddingSkatepark, activeSkatepark, activeCategory }) {
 
     function onCheckout () {
