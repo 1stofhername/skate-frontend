@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ProfileBar from './ProfileBar';
-import Login from './Login';
+import LoginSignUp from './LoginSignUp';
 import CheckIn from './CheckIn';
 import AddSkateparkForm from './AddSkateparkForm';
-import SignUp from './SignUp';
+import SignUp from './SignUpForm';
 import SkateparksMapContainer from './SkateparksMapContainer';
 import '../css/App.css';
 import skateboard from '../icons/icons8-skateboard-64.svg';
@@ -114,6 +114,7 @@ function App() {
   // Sign up
 
   function handleSignUp (formData) {
+    if (errorArray.length === 0)
     fetch('http://localhost:9292/users/signup', {
       method: "POST",
       headers: {
@@ -132,9 +133,9 @@ function App() {
     })
   };
 
-  function handleSignUpCancel () {
-    setIsSigningUp(false);
-    setIsLoggingIn(true);
+  function handleLoginClick () {
+    toggleIsSigningUp();
+    toggleIsLoggingIn();
   }
 
   // State/attribute change handlers
@@ -153,11 +154,10 @@ function App() {
     .then(handleLogout)
   };
 
-  function onSignUpClick (e) {
-    e.preventDefault();
+  function onSignUpClick () {
     handleIsSigningUpChange(true);
     toggleIsLoggingIn();
-  }
+  };
 
   const handleUserChange = (data) => {
     window.sessionStorage.setItem('user', JSON.stringify(data));
@@ -168,14 +168,14 @@ function App() {
     window.sessionStorage.setItem('isLoggedIn', boolean);
     setIsLoggedIn(JSON.parse(window.sessionStorage.getItem('isLoggedIn')));
   };
-  
-  const handleIsSigningUpChange = (boolean) => {
-    setIsSigningUp(boolean);
-  };
 
   const toggleIsLoggingIn = ()=>{
     setIsLoggingIn(!isLoggingIn);
   };
+
+  const toggleIsSigningUp = ()=>{
+    setIsSigningUp(!isSigningUp)
+  }
 
   ///// Add Skatepark /////
 
@@ -248,7 +248,7 @@ function handleInvalidInput (value) {
 
   <Routes>
     <Route path="/" element={<App />} />
-    <Route path="/login" element={<Login />} />
+    <Route path="/login" element={<LoginSignUp />} />
     <Route path="/sign-up" element={<SignUp />} />
   </Routes>
 
@@ -292,26 +292,32 @@ function handleInvalidInput (value) {
       handleAddCancel={handleAddCancel}
        />:null
       }
-      {!isLoggedIn && isLoggingIn ? 
-        <div id="login-form">
-          <Login 
+      {(!isLoggedIn && isLoggingIn) || (!isLoggedIn && isSigningUp) ? 
+        <div id="login-signup">
+          <LoginSignUp
             handleLogin={handleLogin} 
             onSignUpClick={onSignUpClick} 
+            handleLoginClick={handleLoginClick}
+            isSigningUp={isSigningUp}
             error={loginError}
+            isLoggingIn={isLoggingIn}
+            validate={validate} 
+            errors={signupErrors} 
+            setErrors={setSignupErrors} 
+            handleSignUp={handleSignUp}
             />
         </div>
         : null}
-      {isSigningUp && !isLoggedIn ? 
-      <div id="signup-form">
+      {isSigningUp && !isLoggedIn ? <div id="signup-form">
         <SignUp 
           validate={validate} 
           errors={signupErrors} 
           setErrors={setSignupErrors} 
           handleSignUp={handleSignUp}
-          handleSignUpCancel={handleSignUpCancel}
+          handleLoginClick={handleLoginClick}
           />
       </div>:null}
-        {isLoggedIn ? <SkateparksMapContainer categories={categories} skateparks={skateparks} activeSkatepark={activeSkatepark} renderIcons={renderIcons} />:null}
+        {isLoggedIn ? <SkateparksMapContainer categories={categories} skateparks={skateparks} activeSkatepark={activeSkatepark} />:null}
     </div> 
 
   );
