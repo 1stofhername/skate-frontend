@@ -1,4 +1,4 @@
-import SkateparkCard from "./SkateparkCard";
+import SkateParkCard from "./SkateParkCard";
 import CategoryBar from "./CategoryBar";
 
 export default function SkateparkMapContainer ({ categories, skateparks, activeSkatepark, renderIcons }) {
@@ -16,7 +16,7 @@ export default function SkateparkMapContainer ({ categories, skateparks, activeS
             ? skateparks.map((park)=>{
                 return (
                 
-                <SkateparkCard key={park.id} skatepark={park} renderIcons={renderIcons} />
+                <SkateParkCard key={park.id} skatepark={park} renderIcons={renderIcons} />
         
                 )
                 })
