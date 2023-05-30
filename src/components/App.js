@@ -155,7 +155,6 @@ function App() {
   };
 
   function onSignUpClick () {
-    handleIsSigningUpChange(true);
     toggleIsLoggingIn();
   };
 
